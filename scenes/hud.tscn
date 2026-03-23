@@ -1,0 +1,43 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/hud_controller.gd" id="1_ahhtf"]
+
+[node name="HUD" type="CanvasLayer" unique_id=1757434187]
+layer = 10
+script = ExtResource("1_ahhtf")
+
+[node name="HUDPanel" type="PanelContainer" parent="." unique_id=1049053052]
+custom_minimum_size = Vector2(0, 60)
+
+[node name="HBox" type="HBoxContainer" parent="HUDPanel" unique_id=1212113997]
+layout_mode = 2
+
+[node name="CreatureLabel" type="Label" parent="HUDPanel/HBox" unique_id=1095901003]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Pikaia"
+
+[node name="HPBar" type="ProgressBar" parent="HUDPanel/HBox" unique_id=1396103732]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 30.0
+value = 30.0
+
+[node name="HPLabel" type="Label" parent="HUDPanel/HBox" unique_id=1803528890]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "HP: 30/30"
+
+[node name="@Control@2" type="Control" parent="HUDPanel/HBox" unique_id=925525393]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GenesLabel" type="Label" parent="HUDPanel/HBox" unique_id=449494928]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+text = "EVO Genes: 0"
+
+[node name="EraLabel" type="Label" parent="HUDPanel/HBox" unique_id=426456065]
+layout_mode = 2
+text = "Era 1: Primordial Seas"

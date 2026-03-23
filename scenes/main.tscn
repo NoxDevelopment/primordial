@@ -1,0 +1,261 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_85g3d"]
+[ext_resource type="Texture2D" path="res://assets/img/ocean_tiles.png" id="2_choun"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="3_ya4ey"]
+[ext_resource type="Script" path="res://scripts/player_controller.gd" id="4_eb6dy"]
+[ext_resource type="Script" path="res://scripts/enemy_spawner.gd" id="5_trceg"]
+[ext_resource type="PackedScene" path="res://scenes/hud.tscn" id="6_a8y0u"]
+[ext_resource type="Script" path="res://scripts/hud_controller.gd" id="7_jkv2x"]
+[ext_resource type="PackedScene" path="res://scenes/combat_screen.tscn" id="8_jbj1t"]
+[ext_resource type="Script" path="res://scripts/combat_ui_controller.gd" id="9_muem4"]
+
+[node name="Main" type="Node2D" unique_id=1759302894]
+script = ExtResource("1_85g3d")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=595141717]
+zoom = Vector2(2, 2)
+
+[node name="OceanTile_0_0" type="Sprite2D" parent="." unique_id=137176755]
+position = Vector2(-1024, -1024)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="OceanTile_0_1" type="Sprite2D" parent="." unique_id=28440842]
+position = Vector2(-1024, -512)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="OceanTile_0_2" type="Sprite2D" parent="." unique_id=1361526350]
+position = Vector2(-1024, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="OceanTile_0_3" type="Sprite2D" parent="." unique_id=1248266971]
+position = Vector2(-1024, 512)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="OceanTile_0_4" type="Sprite2D" parent="." unique_id=730077623]
+position = Vector2(-1024, 1024)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="OceanTile_1_0" type="Sprite2D" parent="." unique_id=1205881554]
+position = Vector2(-512, -1024)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="OceanTile_1_1" type="Sprite2D" parent="." unique_id=1248805954]
+position = Vector2(-512, -512)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="OceanTile_1_2" type="Sprite2D" parent="." unique_id=822005302]
+position = Vector2(-512, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="OceanTile_1_3" type="Sprite2D" parent="." unique_id=1175414131]
+position = Vector2(-512, 512)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="OceanTile_1_4" type="Sprite2D" parent="." unique_id=480479060]
+position = Vector2(-512, 1024)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="OceanTile_2_0" type="Sprite2D" parent="." unique_id=1036110130]
+position = Vector2(0, -1024)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="OceanTile_2_1" type="Sprite2D" parent="." unique_id=398727399]
+position = Vector2(0, -512)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="OceanTile_2_2" type="Sprite2D" parent="." unique_id=1699350892]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="OceanTile_2_3" type="Sprite2D" parent="." unique_id=712840735]
+position = Vector2(0, 512)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="OceanTile_2_4" type="Sprite2D" parent="." unique_id=749966370]
+position = Vector2(0, 1024)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="OceanTile_3_0" type="Sprite2D" parent="." unique_id=1693575546]
+position = Vector2(512, -1024)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="OceanTile_3_1" type="Sprite2D" parent="." unique_id=911299152]
+position = Vector2(512, -512)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="OceanTile_3_2" type="Sprite2D" parent="." unique_id=1854274446]
+position = Vector2(512, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="OceanTile_3_3" type="Sprite2D" parent="." unique_id=164996485]
+position = Vector2(512, 512)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="OceanTile_3_4" type="Sprite2D" parent="." unique_id=2056305626]
+position = Vector2(512, 1024)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="OceanTile_4_0" type="Sprite2D" parent="." unique_id=2020059768]
+position = Vector2(1024, -1024)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="OceanTile_4_1" type="Sprite2D" parent="." unique_id=736432535]
+position = Vector2(1024, -512)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="OceanTile_4_2" type="Sprite2D" parent="." unique_id=1835120067]
+position = Vector2(1024, 0)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="OceanTile_4_3" type="Sprite2D" parent="." unique_id=392400373]
+position = Vector2(1024, 512)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="OceanTile_4_4" type="Sprite2D" parent="." unique_id=1522186543]
+position = Vector2(1024, 1024)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_choun")
+
+[node name="Coral_0" type="ColorRect" parent="." unique_id=1126037360]
+offset_left = -451.70673
+offset_top = 403.86212
+offset_right = -440.15164
+offset_bottom = 428.83002
+color = Color(0.945996, 0.515304, 0.43504435, 0.7)
+
+[node name="Coral_1" type="ColorRect" parent="." unique_id=539825347]
+offset_left = 89.10069
+offset_top = -480.2043
+offset_right = 99.27231
+offset_bottom = -462.9239
+color = Color(0.72164035, 0.4081081, 0.46237904, 0.7)
+
+[node name="Coral_2" type="ColorRect" parent="." unique_id=1699656060]
+offset_left = 114.19753
+offset_top = -430.28827
+offset_right = 126.55716
+offset_bottom = -412.28992
+color = Color(0.6290412, 0.59550494, 0.36257717, 0.7)
+
+[node name="Coral_3" type="ColorRect" parent="." unique_id=424942050]
+offset_left = -159.85458
+offset_top = -185.39066
+offset_right = -145.3714
+offset_bottom = -170.52998
+color = Color(0.8115594, 0.5586443, 0.47156832, 0.7)
+
+[node name="Coral_4" type="ColorRect" parent="." unique_id=1822425362]
+offset_left = 112.997925
+offset_top = 267.80658
+offset_right = 123.099335
+offset_bottom = 293.69327
+color = Color(0.8558483, 0.53444695, 0.36662617, 0.7)
+
+[node name="Coral_5" type="ColorRect" parent="." unique_id=589745307]
+offset_left = -6.4274793
+offset_top = 198.42694
+offset_right = 0.52534485
+offset_bottom = 221.5924
+color = Color(0.6151056, 0.5476531, 0.30698046, 0.7)
+
+[node name="Coral_6" type="ColorRect" parent="." unique_id=1634230974]
+offset_left = -276.6082
+offset_top = -168.31241
+offset_right = -268.99863
+offset_bottom = -140.5994
+color = Color(0.96660894, 0.5900364, 0.33022475, 0.7)
+
+[node name="Coral_7" type="ColorRect" parent="." unique_id=85518882]
+offset_left = 164.60228
+offset_top = -107.27412
+offset_right = 178.5138
+offset_bottom = -86.67886
+color = Color(0.7476963, 0.42244315, 0.30716288, 0.7)
+
+[node name="Coral_8" type="ColorRect" parent="." unique_id=757468425]
+offset_left = 460.1284
+offset_top = -411.5788
+offset_right = 476.11902
+offset_bottom = -390.78253
+color = Color(0.89635223, 0.50744194, 0.41756704, 0.7)
+
+[node name="Coral_9" type="ColorRect" parent="." unique_id=258337649]
+offset_left = -9.998392
+offset_top = 379.69058
+offset_right = 0.37884903
+offset_bottom = 397.8676
+color = Color(0.88906246, 0.46491164, 0.44441083, 0.7)
+
+[node name="Coral_10" type="ColorRect" parent="." unique_id=1836443667]
+offset_left = -173.94334
+offset_top = -63.395645
+offset_right = -159.78696
+offset_bottom = -39.733715
+color = Color(0.6457753, 0.4537229, 0.35894138, 0.7)
+
+[node name="Coral_11" type="ColorRect" parent="." unique_id=1551229910]
+offset_left = -130.32185
+offset_top = 37.949425
+offset_right = -117.04149
+offset_bottom = 61.60338
+color = Color(0.6955661, 0.31084064, 0.47457686, 0.7)
+
+[node name="Coral_12" type="ColorRect" parent="." unique_id=929231614]
+offset_left = 304.87036
+offset_top = -57.821358
+offset_right = 311.52228
+offset_bottom = -32.849632
+color = Color(0.7442204, 0.52435315, 0.37490714, 0.7)
+
+[node name="Coral_13" type="ColorRect" parent="." unique_id=1777485427]
+offset_left = -1.43817
+offset_top = -458.2516
+offset_right = 12.285107
+offset_bottom = -436.61548
+color = Color(0.6662228, 0.5475244, 0.4591875, 0.7)
+
+[node name="Coral_14" type="ColorRect" parent="." unique_id=1305202235]
+offset_left = 435.79037
+offset_top = -365.2468
+offset_right = 445.2974
+offset_bottom = -351.19424
+color = Color(0.77766156, 0.4107708, 0.40974244, 0.7)
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1743110294 instance=ExtResource("3_ya4ey")]
+motion_mode = 1
+script = ExtResource("4_eb6dy")
+
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=1791895132]
+script = ExtResource("5_trceg")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1757434187 instance=ExtResource("6_a8y0u")]
+layer = 10
+script = ExtResource("7_jkv2x")
+
+[node name="CombatScreen" type="CanvasLayer" parent="." unique_id=958085348 instance=ExtResource("8_jbj1t")]
+layer = 20
+script = ExtResource("9_muem4")
