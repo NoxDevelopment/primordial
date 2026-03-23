@@ -165,6 +165,7 @@ func _trigger_evolution(filled_stat: String) -> void:
 		return
 
 	# Evolve!
+	Audio.play_sfx("evolve")
 	_set_creature(target_id)
 
 func is_air_breather() -> bool:

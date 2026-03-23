@@ -57,6 +57,7 @@ func player_fight() -> void:
 	enemy_hp -= damage
 	combat_log.emit("You attack for %d damage!" % damage)
 	enemy_hp_changed.emit(maxi(0, enemy_hp), enemy_max_hp)
+	Audio.play_sfx("hit")
 
 	if enemy_hp <= 0:
 		_victory()
@@ -147,6 +148,7 @@ func player_special(ability_index: int) -> void:
 	enemy_hp -= damage
 	combat_log.emit("%s deals %d damage!" % [ability_name, damage])
 	enemy_hp_changed.emit(maxi(0, enemy_hp), enemy_max_hp)
+	Audio.play_sfx("special")
 
 	if enemy_hp <= 0:
 		_victory()
@@ -252,11 +254,13 @@ func _victory() -> void:
 	var genes: int = enemy_data.get("evo_genes_reward", 5)
 	combat_log.emit("Victory! Earned %d EVO Genes." % genes)
 	in_combat = false
+	Audio.play_sfx("evo_gene")
 	combat_ended.emit(true, genes)
 
 func _defeat() -> void:
 	combat_log.emit("You have been defeated...")
 	in_combat = false
+	Audio.play_sfx("defeat")
 	combat_ended.emit(false, 0)
 
 func get_player_hp() -> int:

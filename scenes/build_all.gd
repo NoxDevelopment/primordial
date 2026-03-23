@@ -18,18 +18,27 @@ func _build_player() -> void:
 	root.name = "Player"
 	root.motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	root.add_to_group("player")
+	root.collision_layer = 1  # Layer 1: player
+	root.collision_mask = 0   # Player doesn't need to collide with enemies physically
 
-	# Sprite — placeholder colored rect
+	# Sprite — use generated creature sheet or placeholder
 	var sprite := Sprite2D.new()
 	sprite.name = "Sprite2D"
-	sprite.texture = _make_placeholder_texture(16, 16, Color(0.85, 0.75, 0.65))
+	if ResourceLoader.exists("res://assets/img/player_creatures.png"):
+		sprite.texture = load("res://assets/img/player_creatures.png")
+		# Use first creature from the sheet (top-left region)
+		sprite.region_enabled = true
+		sprite.region_rect = Rect2(0, 0, 256, 256)
+		sprite.scale = Vector2(0.12, 0.12)
+	else:
+		sprite.texture = _make_placeholder_texture(16, 16, Color(0.85, 0.75, 0.65))
 	root.add_child(sprite)
 
 	# Collision
 	var col := CollisionShape2D.new()
 	col.name = "CollisionShape2D"
 	var shape := CircleShape2D.new()
-	shape.radius = 8.0
+	shape.radius = 10.0
 	col.shape = shape
 	root.add_child(col)
 
@@ -43,26 +52,39 @@ func _build_enemy() -> void:
 	var root := CharacterBody2D.new()
 	root.name = "Enemy"
 	root.motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
+	root.collision_layer = 2  # Layer 2: enemies
+	root.collision_mask = 0   # Enemies don't collide with each other
 
 	var sprite := Sprite2D.new()
 	sprite.name = "Sprite2D"
-	sprite.texture = _make_placeholder_texture(16, 16, Color(0.8, 0.3, 0.3))
+	if ResourceLoader.exists("res://assets/img/enemy_creatures.png"):
+		sprite.texture = load("res://assets/img/enemy_creatures.png")
+		sprite.region_enabled = true
+		sprite.region_rect = Rect2(0, 0, 256, 256)
+		sprite.scale = Vector2(0.12, 0.12)
+	else:
+		sprite.texture = _make_placeholder_texture(16, 16, Color(0.8, 0.3, 0.3))
 	root.add_child(sprite)
 
 	var col := CollisionShape2D.new()
 	col.name = "CollisionShape2D"
 	var shape := CircleShape2D.new()
-	shape.radius = 8.0
+	shape.radius = 10.0
 	col.shape = shape
 	root.add_child(col)
 
-	# Detection area for combat trigger
+	# Detection area for combat trigger — must detect player (layer 1)
 	var area := Area2D.new()
 	area.name = "DetectionArea"
+	area.collision_layer = 0     # Area itself is on no layer
+	area.collision_mask = 1      # Detects layer 1 (player)
+	area.monitoring = true
+	area.monitorable = false
+
 	var area_col := CollisionShape2D.new()
 	area_col.name = "AreaShape"
 	var area_shape := CircleShape2D.new()
-	area_shape.radius = 12.0
+	area_shape.radius = 14.0
 	area_col.shape = area_shape
 	area.add_child(area_col)
 	root.add_child(area)
@@ -87,14 +109,12 @@ func _build_hud() -> void:
 	hbox.name = "HBox"
 	panel.add_child(hbox)
 
-	# Creature name
 	var creature_label := Label.new()
 	creature_label.name = "CreatureLabel"
 	creature_label.text = "Pikaia"
 	creature_label.custom_minimum_size = Vector2(150, 0)
 	hbox.add_child(creature_label)
 
-	# HP Bar
 	var hp_bar := ProgressBar.new()
 	hp_bar.name = "HPBar"
 	hp_bar.custom_minimum_size = Vector2(200, 20)
@@ -103,26 +123,22 @@ func _build_hud() -> void:
 	hp_bar.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 	hbox.add_child(hp_bar)
 
-	# HP Label
 	var hp_label := Label.new()
 	hp_label.name = "HPLabel"
 	hp_label.text = "HP: 30/30"
 	hp_label.custom_minimum_size = Vector2(100, 0)
 	hbox.add_child(hp_label)
 
-	# Spacer
 	var spacer := Control.new()
 	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	hbox.add_child(spacer)
 
-	# Genes
 	var genes_label := Label.new()
 	genes_label.name = "GenesLabel"
 	genes_label.text = "EVO Genes: 0"
 	genes_label.custom_minimum_size = Vector2(140, 0)
 	hbox.add_child(genes_label)
 
-	# Era
 	var era_label := Label.new()
 	era_label.name = "EraLabel"
 	era_label.text = "Era 1: Primordial Seas"
@@ -173,12 +189,13 @@ func _build_combat_ui() -> void:
 	enemy_name.name = "EnemyName"
 	enemy_name.text = "Enemy"
 	enemy_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	enemy_name.add_theme_font_size_override("font_size", 22)
 	enemy_section.add_child(enemy_name)
 
 	# Enemy portrait — TextureRect for real images
 	var portrait_tex := TextureRect.new()
 	portrait_tex.name = "EnemyPortraitTex"
-	portrait_tex.custom_minimum_size = Vector2(200, 200)
+	portrait_tex.custom_minimum_size = Vector2(256, 256)
 	portrait_tex.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	portrait_tex.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	portrait_tex.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
@@ -218,12 +235,13 @@ func _build_combat_ui() -> void:
 	var actions := HBoxContainer.new()
 	actions.name = "Actions"
 	actions.alignment = BoxContainer.ALIGNMENT_CENTER
+	actions.add_theme_constant_override("separation", 15)
 	vbox.add_child(actions)
 
 	var fight_btn := Button.new()
 	fight_btn.name = "FightBtn"
 	fight_btn.text = "Fight"
-	fight_btn.custom_minimum_size = Vector2(80, 35)
+	fight_btn.custom_minimum_size = Vector2(100, 40)
 	actions.add_child(fight_btn)
 
 	var abilities := VBoxContainer.new()
@@ -233,7 +251,7 @@ func _build_combat_ui() -> void:
 	var escape_btn := Button.new()
 	escape_btn.name = "EscapeBtn"
 	escape_btn.text = "Escape"
-	escape_btn.custom_minimum_size = Vector2(80, 35)
+	escape_btn.custom_minimum_size = Vector2(100, 40)
 	actions.add_child(escape_btn)
 
 	root.set_script(load("res://scripts/combat_ui_controller.gd"))
@@ -257,7 +275,6 @@ func _build_main() -> void:
 		ocean_tex = load("res://assets/img/ocean_tiles.png")
 
 	if ocean_tex:
-		# Tile the ocean texture across a large area using multiple Sprite2D
 		for tx in range(-2, 3):
 			for ty in range(-2, 3):
 				var tile := Sprite2D.new()
@@ -267,22 +284,12 @@ func _build_main() -> void:
 				tile.scale = Vector2(0.5, 0.5)
 				root.add_child(tile)
 	else:
-		# Fallback colored rect
 		var ground := ColorRect.new()
 		ground.name = "OceanFloor"
 		ground.color = Color(0.08, 0.15, 0.3)
 		ground.position = Vector2(-1000, -1000)
 		ground.size = Vector2(2000, 2000)
 		root.add_child(ground)
-
-	# Coral decoration sprites scattered around
-	for i in range(15):
-		var coral := ColorRect.new()
-		coral.name = "Coral_%d" % i
-		coral.color = Color(randf_range(0.6, 1.0), randf_range(0.3, 0.6), randf_range(0.3, 0.5), 0.7)
-		coral.size = Vector2(randf_range(6, 16), randf_range(12, 28))
-		coral.position = Vector2(randf_range(-500, 500), randf_range(-500, 500))
-		root.add_child(coral)
 
 	# Player instance
 	var player_scene: PackedScene = load("res://scenes/player.tscn")
@@ -296,6 +303,16 @@ func _build_main() -> void:
 	spawner.name = "EnemySpawner"
 	spawner.set_script(load("res://scripts/enemy_spawner.gd"))
 	root.add_child(spawner)
+
+	# Audio players
+	var bgm := AudioStreamPlayer.new()
+	bgm.name = "BGM"
+	bgm.bus = &"Master"
+	bgm.volume_db = -10.0
+	bgm.autoplay = true
+	if ResourceLoader.exists("res://assets/audio/ocean_ambient.wav"):
+		bgm.stream = load("res://assets/audio/ocean_ambient.wav")
+	root.add_child(bgm)
 
 	# HUD
 	var hud_scene: PackedScene = load("res://scenes/hud.tscn")

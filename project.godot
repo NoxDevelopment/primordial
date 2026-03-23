@@ -26,6 +26,7 @@ textures/canvas_textures/default_texture_filter=0
 GameManager="*res://scripts/game_manager.gd"
 EvoSystem="*res://scripts/evolution_system.gd"
 CreatureDB="*res://scripts/creature_database.gd"
+Audio="*res://scripts/audio_manager.gd"
 
 [input]
 
