@@ -2,42 +2,42 @@
 
 [ext_resource type="Script" path="res://scripts/hud_controller.gd" id="1_ahhtf"]
 
-[node name="HUD" type="CanvasLayer" unique_id=1756860309]
+[node name="HUD" type="CanvasLayer" unique_id=1897613265]
 layer = 10
 script = ExtResource("1_ahhtf")
 
-[node name="HUDPanel" type="PanelContainer" parent="." unique_id=60101922]
+[node name="HUDPanel" type="PanelContainer" parent="." unique_id=1521963687]
 custom_minimum_size = Vector2(0, 60)
 
-[node name="HBox" type="HBoxContainer" parent="HUDPanel" unique_id=431171475]
+[node name="HBox" type="HBoxContainer" parent="HUDPanel" unique_id=1908058919]
 layout_mode = 2
 
-[node name="CreatureLabel" type="Label" parent="HUDPanel/HBox" unique_id=1572150660]
+[node name="CreatureLabel" type="Label" parent="HUDPanel/HBox" unique_id=1956079719]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "Pikaia"
 
-[node name="HPBar" type="ProgressBar" parent="HUDPanel/HBox" unique_id=1284953560]
+[node name="HPBar" type="ProgressBar" parent="HUDPanel/HBox" unique_id=1630758581]
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 size_flags_vertical = 4
 max_value = 30.0
 value = 30.0
 
-[node name="HPLabel" type="Label" parent="HUDPanel/HBox" unique_id=2035080363]
+[node name="HPLabel" type="Label" parent="HUDPanel/HBox" unique_id=2026090233]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "HP: 30/30"
 
-[node name="@Control@2" type="Control" parent="HUDPanel/HBox" unique_id=1281587203]
+[node name="@Control@2" type="Control" parent="HUDPanel/HBox" unique_id=2046082695]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="GenesLabel" type="Label" parent="HUDPanel/HBox" unique_id=1681364427]
+[node name="GenesLabel" type="Label" parent="HUDPanel/HBox" unique_id=2076029985]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 text = "EVO Genes: 0"
 
-[node name="EraLabel" type="Label" parent="HUDPanel/HBox" unique_id=407113828]
+[node name="EraLabel" type="Label" parent="HUDPanel/HBox" unique_id=130201341]
 layout_mode = 2
 text = "Era 1: Primordial Seas"
