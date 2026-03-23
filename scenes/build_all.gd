@@ -21,15 +21,12 @@ func _build_player() -> void:
 	root.collision_layer = 1  # Layer 1: player
 	root.collision_mask = 0   # Player doesn't need to collide with enemies physically
 
-	# Sprite — use generated creature sheet or placeholder
+	# Sprite — load individual creature image, script handles swapping on evolution
 	var sprite := Sprite2D.new()
 	sprite.name = "Sprite2D"
-	if ResourceLoader.exists("res://assets/img/player_creatures.png"):
-		sprite.texture = load("res://assets/img/player_creatures.png")
-		# Use first creature from the sheet (top-left region)
-		sprite.region_enabled = true
-		sprite.region_rect = Rect2(0, 0, 256, 256)
-		sprite.scale = Vector2(0.12, 0.12)
+	if ResourceLoader.exists("res://assets/img/sprite_pikaia.png"):
+		sprite.texture = load("res://assets/img/sprite_pikaia.png")
+		sprite.scale = Vector2(0.05, 0.05)
 	else:
 		sprite.texture = _make_placeholder_texture(16, 16, Color(0.85, 0.75, 0.65))
 	root.add_child(sprite)
@@ -55,13 +52,12 @@ func _build_enemy() -> void:
 	root.collision_layer = 2  # Layer 2: enemies
 	root.collision_mask = 0   # Enemies don't collide with each other
 
+	# Sprite — script handles loading correct texture per enemy type in setup()
 	var sprite := Sprite2D.new()
 	sprite.name = "Sprite2D"
-	if ResourceLoader.exists("res://assets/img/enemy_creatures.png"):
-		sprite.texture = load("res://assets/img/enemy_creatures.png")
-		sprite.region_enabled = true
-		sprite.region_rect = Rect2(0, 0, 256, 256)
-		sprite.scale = Vector2(0.12, 0.12)
+	if ResourceLoader.exists("res://assets/img/sprite_trilobite.png"):
+		sprite.texture = load("res://assets/img/sprite_trilobite.png")
+		sprite.scale = Vector2(0.06, 0.06)
 	else:
 		sprite.texture = _make_placeholder_texture(16, 16, Color(0.8, 0.3, 0.3))
 	root.add_child(sprite)
@@ -304,7 +300,7 @@ func _build_main() -> void:
 	spawner.set_script(load("res://scripts/enemy_spawner.gd"))
 	root.add_child(spawner)
 
-	# Audio players
+	# Audio players — BGM with looping
 	var bgm := AudioStreamPlayer.new()
 	bgm.name = "BGM"
 	bgm.bus = &"Master"
@@ -313,6 +309,12 @@ func _build_main() -> void:
 	if ResourceLoader.exists("res://assets/audio/ocean_ambient.wav"):
 		bgm.stream = load("res://assets/audio/ocean_ambient.wav")
 	root.add_child(bgm)
+
+	# SFX player for one-shot sounds (AudioManager autoload handles this too)
+	var sfx := AudioStreamPlayer.new()
+	sfx.name = "SFX"
+	sfx.bus = &"Master"
+	root.add_child(sfx)
 
 	# HUD
 	var hud_scene: PackedScene = load("res://scenes/hud.tscn")

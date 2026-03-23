@@ -4,11 +4,16 @@ extends Node2D
 var _camera: Camera2D = null
 var _player: CharacterBody2D = null
 var _evo_chart: CanvasLayer = null
-var _game_over_label: Label = null
+var _bgm: AudioStreamPlayer = null
 
 func _ready() -> void:
 	_camera = get_node_or_null("Camera2D")
 	_player = get_node_or_null("Player")
+	_bgm = get_node_or_null("BGM")
+
+	# Loop BGM when it finishes
+	if _bgm:
+		_bgm.finished.connect(_on_bgm_finished)
 
 	# Create evolution chart UI (not in .tscn — built dynamically)
 	var chart_script: GDScript = load("res://scripts/evolution_chart_controller.gd")
@@ -125,8 +130,11 @@ func _on_evolved(old_id: String, new_id: String) -> void:
 	var timer := get_tree().create_timer(4.0)
 	timer.timeout.connect(func(): notify.queue_free())
 
+func _on_bgm_finished() -> void:
+	if _bgm:
+		_bgm.play()
+
 func _on_combat_finished(victory: bool) -> void:
 	if victory:
-		# Update player HP display
 		if _player and _player.has_signal("hp_changed"):
 			_player.hp_changed.emit(GameManager.player_hp, GameManager.player_max_hp)

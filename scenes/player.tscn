@@ -1,20 +1,18 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/player_controller.gd" id="1_g2els"]
-[ext_resource type="Texture2D" path="res://assets/img/player_creatures.png" id="2_qhqgy"]
+[ext_resource type="Texture2D" path="res://assets/img/sprite_pikaia.png" id="2_qhqgy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
 
-[node name="Player" type="CharacterBody2D" unique_id=377190519]
+[node name="Player" type="CharacterBody2D" unique_id=1977565658]
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_g2els")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1507057661]
-scale = Vector2(0.12, 0.12)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1794966013]
+scale = Vector2(0.05, 0.05)
 texture = ExtResource("2_qhqgy")
-region_enabled = true
-region_rect = Rect2(0, 0, 256, 256)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=627810388]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=718086204]
 shape = SubResource("CircleShape2D_dqkch")

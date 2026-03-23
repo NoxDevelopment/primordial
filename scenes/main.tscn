@@ -11,153 +11,155 @@
 [ext_resource type="PackedScene" path="res://scenes/combat_screen.tscn" id="9_dp3eg"]
 [ext_resource type="Script" path="res://scripts/combat_ui_controller.gd" id="10_0ld40"]
 
-[node name="Main" type="Node2D" unique_id=1042365555]
+[node name="Main" type="Node2D" unique_id=1097927630]
 script = ExtResource("1_choun")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=688522898]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=371953142]
 zoom = Vector2(2, 2)
 
-[node name="OceanTile_0_0" type="Sprite2D" parent="." unique_id=1717052423]
+[node name="OceanTile_0_0" type="Sprite2D" parent="." unique_id=127546971]
 position = Vector2(-1024, -1024)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_0_1" type="Sprite2D" parent="." unique_id=1605196248]
+[node name="OceanTile_0_1" type="Sprite2D" parent="." unique_id=1040214878]
 position = Vector2(-1024, -512)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_0_2" type="Sprite2D" parent="." unique_id=642892906]
+[node name="OceanTile_0_2" type="Sprite2D" parent="." unique_id=1470089826]
 position = Vector2(-1024, 0)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_0_3" type="Sprite2D" parent="." unique_id=123836910]
+[node name="OceanTile_0_3" type="Sprite2D" parent="." unique_id=154536599]
 position = Vector2(-1024, 512)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_0_4" type="Sprite2D" parent="." unique_id=910974568]
+[node name="OceanTile_0_4" type="Sprite2D" parent="." unique_id=1173745548]
 position = Vector2(-1024, 1024)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_1_0" type="Sprite2D" parent="." unique_id=826266943]
+[node name="OceanTile_1_0" type="Sprite2D" parent="." unique_id=41375894]
 position = Vector2(-512, -1024)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_1_1" type="Sprite2D" parent="." unique_id=27252260]
+[node name="OceanTile_1_1" type="Sprite2D" parent="." unique_id=1722228636]
 position = Vector2(-512, -512)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_1_2" type="Sprite2D" parent="." unique_id=110055816]
+[node name="OceanTile_1_2" type="Sprite2D" parent="." unique_id=1169275643]
 position = Vector2(-512, 0)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_1_3" type="Sprite2D" parent="." unique_id=1597590857]
+[node name="OceanTile_1_3" type="Sprite2D" parent="." unique_id=593227738]
 position = Vector2(-512, 512)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_1_4" type="Sprite2D" parent="." unique_id=2107896311]
+[node name="OceanTile_1_4" type="Sprite2D" parent="." unique_id=1551147959]
 position = Vector2(-512, 1024)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_2_0" type="Sprite2D" parent="." unique_id=1760446603]
+[node name="OceanTile_2_0" type="Sprite2D" parent="." unique_id=1796537466]
 position = Vector2(0, -1024)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_2_1" type="Sprite2D" parent="." unique_id=1420333456]
+[node name="OceanTile_2_1" type="Sprite2D" parent="." unique_id=541986567]
 position = Vector2(0, -512)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_2_2" type="Sprite2D" parent="." unique_id=1708808621]
+[node name="OceanTile_2_2" type="Sprite2D" parent="." unique_id=845835795]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_2_3" type="Sprite2D" parent="." unique_id=1685730418]
+[node name="OceanTile_2_3" type="Sprite2D" parent="." unique_id=738431996]
 position = Vector2(0, 512)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_2_4" type="Sprite2D" parent="." unique_id=520695409]
+[node name="OceanTile_2_4" type="Sprite2D" parent="." unique_id=1606341787]
 position = Vector2(0, 1024)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_3_0" type="Sprite2D" parent="." unique_id=1920264826]
+[node name="OceanTile_3_0" type="Sprite2D" parent="." unique_id=370981323]
 position = Vector2(512, -1024)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_3_1" type="Sprite2D" parent="." unique_id=95495013]
+[node name="OceanTile_3_1" type="Sprite2D" parent="." unique_id=924886158]
 position = Vector2(512, -512)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_3_2" type="Sprite2D" parent="." unique_id=407347132]
+[node name="OceanTile_3_2" type="Sprite2D" parent="." unique_id=1680848422]
 position = Vector2(512, 0)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_3_3" type="Sprite2D" parent="." unique_id=1439141381]
+[node name="OceanTile_3_3" type="Sprite2D" parent="." unique_id=2140296398]
 position = Vector2(512, 512)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_3_4" type="Sprite2D" parent="." unique_id=614767872]
+[node name="OceanTile_3_4" type="Sprite2D" parent="." unique_id=1632255919]
 position = Vector2(512, 1024)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_4_0" type="Sprite2D" parent="." unique_id=482604500]
+[node name="OceanTile_4_0" type="Sprite2D" parent="." unique_id=1058305447]
 position = Vector2(1024, -1024)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_4_1" type="Sprite2D" parent="." unique_id=983739156]
+[node name="OceanTile_4_1" type="Sprite2D" parent="." unique_id=1116677003]
 position = Vector2(1024, -512)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_4_2" type="Sprite2D" parent="." unique_id=1440868568]
+[node name="OceanTile_4_2" type="Sprite2D" parent="." unique_id=1202979828]
 position = Vector2(1024, 0)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_4_3" type="Sprite2D" parent="." unique_id=718889503]
+[node name="OceanTile_4_3" type="Sprite2D" parent="." unique_id=359853115]
 position = Vector2(1024, 512)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_4_4" type="Sprite2D" parent="." unique_id=2105657302]
+[node name="OceanTile_4_4" type="Sprite2D" parent="." unique_id=1552786741]
 position = Vector2(1024, 1024)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=377190519 instance=ExtResource("3_eb6dy")]
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1977565658 instance=ExtResource("3_eb6dy")]
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("4_trceg")
 
-[node name="EnemySpawner" type="Node2D" parent="." unique_id=423356068]
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=920024464]
 script = ExtResource("5_a8y0u")
 
-[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1742850671]
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=499317656]
 stream = ExtResource("6_jkv2x")
 volume_db = -10.0
 autoplay = true
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=1786797761 instance=ExtResource("7_jbj1t")]
+[node name="SFX" type="AudioStreamPlayer" parent="." unique_id=684833389]
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1756860309 instance=ExtResource("7_jbj1t")]
 layer = 10
 script = ExtResource("8_muem4")
 
-[node name="CombatScreen" type="CanvasLayer" parent="." unique_id=619519174 instance=ExtResource("9_dp3eg")]
+[node name="CombatScreen" type="CanvasLayer" parent="." unique_id=267404035 instance=ExtResource("9_dp3eg")]
 layer = 20
 script = ExtResource("10_0ld40")

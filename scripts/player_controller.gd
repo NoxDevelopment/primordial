@@ -11,19 +11,18 @@ var _idle_time: float = 0.0
 var _heal_accumulator: float = 0.0
 var _sprite: Sprite2D = null
 
-# Sprite regions from player_creatures.png per creature
-# The sheet has ~12 creatures scattered — map them by evolution tree position
-var CREATURE_SPRITE_REGIONS: Dictionary = {
-	"pikaia": Rect2(768, 512, 256, 256),
-	"haikouichthys": Rect2(512, 512, 256, 256),
-	"arandaspis": Rect2(256, 512, 256, 256),
-	"cephalaspis": Rect2(0, 512, 256, 256),
-	"climatius": Rect2(768, 256, 256, 256),
-	"cladoselache": Rect2(0, 0, 256, 256),
-	"bothriolepis": Rect2(256, 256, 256, 256),
-	"dunkleosteus": Rect2(0, 256, 256, 256),
-	"eusthenopteron": Rect2(512, 0, 256, 256),
-	"tiktaalik": Rect2(256, 0, 256, 256),
+# Individual sprite paths per creature
+var CREATURE_SPRITES: Dictionary = {
+	"pikaia": "res://assets/img/sprite_pikaia.png",
+	"haikouichthys": "res://assets/img/sprite_pikaia.png",
+	"arandaspis": "res://assets/img/sprite_trilobite.png",
+	"cephalaspis": "res://assets/img/sprite_trilobite.png",
+	"climatius": "res://assets/img/sprite_nautiloid.png",
+	"cladoselache": "res://assets/img/sprite_anomalocaris.png",
+	"bothriolepis": "res://assets/img/sprite_trilobite.png",
+	"dunkleosteus": "res://assets/img/sprite_anomalocaris.png",
+	"eusthenopteron": "res://assets/img/sprite_nautiloid.png",
+	"tiktaalik": "res://assets/img/sprite_eurypterid.png",
 }
 
 func _ready() -> void:
@@ -49,13 +48,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		_idle_time = 0.0
 		_heal_accumulator = 0.0
-		# Flip sprite to face movement direction
 		if _sprite and input_dir.x != 0.0:
 			_sprite.flip_h = input_dir.x < 0.0
 
 	move_and_slide()
 
-func _on_evolved(_old: Dictionary, new_data: Dictionary) -> void:
+func _on_evolved(_old: Dictionary, _new: Dictionary) -> void:
 	_update_appearance()
 	hp_changed.emit(GameManager.player_hp, GameManager.player_max_hp)
 
@@ -65,14 +63,18 @@ func _update_appearance() -> void:
 	var creature: Dictionary = EvoSystem.get_current_creature()
 	var creature_id: String = creature.get("id", "")
 
-	# Use creature-specific sprite region
-	if CREATURE_SPRITE_REGIONS.has(creature_id):
-		_sprite.region_rect = CREATURE_SPRITE_REGIONS[creature_id]
+	# Load individual sprite
+	var sprite_path: String = CREATURE_SPRITES.get(creature_id, "")
+	if sprite_path != "" and ResourceLoader.exists(sprite_path):
+		_sprite.texture = load(sprite_path)
+		_sprite.region_enabled = false
 		_sprite.modulate = Color.WHITE
+	else:
+		_sprite.modulate = creature.get("color", Color.WHITE)
 
-	# Scale based on creature size progression
+	# Scale based on generation — bigger as you evolve
 	var gen: int = creature.get("generation", 1)
-	var base_scale: float = 0.08 + gen * 0.02
+	var base_scale: float = 0.04 + gen * 0.01
 	_sprite.scale = Vector2(base_scale, base_scale)
 
 func trigger_combat(enemy_data: Dictionary) -> void:

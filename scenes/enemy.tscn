@@ -1,31 +1,29 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://scripts/enemy_controller.gd" id="1_md0e3"]
-[ext_resource type="Texture2D" path="res://assets/img/enemy_creatures.png" id="2_4ra3w"]
+[ext_resource type="Texture2D" path="res://assets/img/sprite_trilobite.png" id="2_4ra3w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5uy6h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c4w8v"]
 radius = 14.0
 
-[node name="Enemy" type="CharacterBody2D" unique_id=8466351]
+[node name="Enemy" type="CharacterBody2D" unique_id=271323005]
 collision_layer = 2
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_md0e3")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=961962736]
-scale = Vector2(0.12, 0.12)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1690984288]
+scale = Vector2(0.06, 0.06)
 texture = ExtResource("2_4ra3w")
-region_enabled = true
-region_rect = Rect2(0, 0, 256, 256)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2055990325]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=532722131]
 shape = SubResource("CircleShape2D_5uy6h")
 
-[node name="DetectionArea" type="Area2D" parent="." unique_id=1760942133]
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1385542100]
 collision_layer = 0
 monitorable = false
 
-[node name="AreaShape" type="CollisionShape2D" parent="DetectionArea" unique_id=1960926325]
+[node name="AreaShape" type="CollisionShape2D" parent="DetectionArea" unique_id=1951879491]
 shape = SubResource("CircleShape2D_c4w8v")

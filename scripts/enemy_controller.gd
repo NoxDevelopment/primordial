@@ -7,36 +7,39 @@ var wander_direction: Vector2 = Vector2.ZERO
 var wander_timer: float = 0.0
 var wander_speed: float = 40.0
 
-# Sprite region mapping: which part of enemy_creatures.png to show per enemy type
-# The sheet is 1024x1024 with ~16 creatures in a 4x4 grid (256x256 each)
-var ENEMY_SPRITE_REGIONS: Dictionary = {
-	"trilobite": Rect2(0, 256, 256, 256),
-	"jellyfish": Rect2(256, 512, 256, 256),
-	"eurypterid": Rect2(0, 512, 256, 256),
-	"nautiloid": Rect2(256, 0, 256, 256),
-	"anomalocaris": Rect2(512, 0, 256, 256),
-	"cameroceras": Rect2(768, 0, 256, 256),
+# Individual sprite paths per enemy type
+var ENEMY_SPRITES: Dictionary = {
+	"trilobite": "res://assets/img/sprite_trilobite.png",
+	"jellyfish": "res://assets/img/sprite_jellyfish.png",
+	"eurypterid": "res://assets/img/sprite_eurypterid.png",
+	"nautiloid": "res://assets/img/sprite_nautiloid.png",
+	"anomalocaris": "res://assets/img/sprite_anomalocaris.png",
+	"cameroceras": "res://assets/img/sprite_nautiloid.png",
 }
 
 func _ready() -> void:
 	var area: Area2D = get_node_or_null("DetectionArea")
 	if area:
 		area.body_entered.connect(_on_body_entered)
+		area.monitoring = true
 
 func setup(id: String) -> void:
 	enemy_id = id
 	enemy_data = CreatureDB.get_enemy(id)
 	var sprite: Sprite2D = get_node_or_null("Sprite2D")
-	if sprite:
-		# Try to use a specific region from the enemy sprite sheet
-		if ENEMY_SPRITE_REGIONS.has(id):
-			sprite.region_rect = ENEMY_SPRITE_REGIONS[id]
-		else:
-			# Random region for unknown enemy types
-			var rx: int = randi_range(0, 3) * 256
-			var ry: int = randi_range(0, 3) * 256
-			sprite.region_rect = Rect2(rx, ry, 256, 256)
-		sprite.modulate = Color.WHITE  # Use actual texture colors, not tint
+	if sprite == null:
+		return
+
+	# Load individual sprite texture
+	var sprite_path: String = ENEMY_SPRITES.get(id, "")
+	if sprite_path != "" and ResourceLoader.exists(sprite_path):
+		sprite.texture = load(sprite_path)
+		sprite.region_enabled = false
+		sprite.scale = Vector2(0.06, 0.06)
+		sprite.modulate = Color.WHITE
+	else:
+		# Fallback: color tint on placeholder
+		sprite.modulate = enemy_data.get("color", Color.RED)
 
 func _physics_process(delta: float) -> void:
 	if GameManager.state != GameManager.GameState.OVERWORLD:
@@ -65,5 +68,4 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	if body.is_in_group("player") and body.has_method("trigger_combat"):
 		body.trigger_combat(enemy_data)
-		# Remove this enemy after triggering combat
 		queue_free()
