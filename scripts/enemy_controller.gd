@@ -79,6 +79,9 @@ func _physics_process(delta: float) -> void:
 	velocity = wander_direction * wander_speed
 	move_and_slide()
 
+func get_combat_data() -> Dictionary:
+	return enemy_data
+
 func _on_body_entered(body: Node2D) -> void:
 	if GameManager.state != GameManager.GameState.OVERWORLD:
 		return

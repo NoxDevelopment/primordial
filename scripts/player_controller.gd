@@ -67,6 +67,18 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+	# Check for combat collisions after movement
+	if GameManager.state == GameManager.GameState.OVERWORLD:
+		for i in range(get_slide_collision_count()):
+			var col: KinematicCollision2D = get_slide_collision(i)
+			var collider: Object = col.get_collider()
+			if collider is CharacterBody2D and collider.has_method("get_combat_data"):
+				var enemy_data: Dictionary = collider.get_combat_data()
+				if not enemy_data.is_empty():
+					trigger_combat(enemy_data)
+					collider.queue_free()
+					break
+
 func _on_evolved(_old: Dictionary, _new: Dictionary) -> void:
 	_update_appearance()
 	hp_changed.emit(GameManager.player_hp, GameManager.player_max_hp)

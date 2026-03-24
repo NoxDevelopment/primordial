@@ -6,24 +6,24 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_5uy6h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c4w8v"]
-radius = 14.0
+radius = 20.0
 
-[node name="Enemy" type="CharacterBody2D" unique_id=818662227]
+[node name="Enemy" type="CharacterBody2D" unique_id=1979466652]
 collision_layer = 2
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_md0e3")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1128149940]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1674009690]
 scale = Vector2(0.06, 0.06)
 texture = ExtResource("2_4ra3w")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=601621823]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=624695407]
 shape = SubResource("CircleShape2D_5uy6h")
 
-[node name="DetectionArea" type="Area2D" parent="." unique_id=1814202640]
-collision_layer = 0
+[node name="DetectionArea" type="Area2D" parent="." unique_id=294849510]
+collision_layer = 4
 monitorable = false
 
-[node name="AreaShape" type="CollisionShape2D" parent="DetectionArea" unique_id=327464593]
+[node name="AreaShape" type="CollisionShape2D" parent="DetectionArea" unique_id=810446071]
 shape = SubResource("CircleShape2D_c4w8v")

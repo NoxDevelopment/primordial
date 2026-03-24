@@ -19,7 +19,7 @@ func _build_player() -> void:
 	root.motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	root.add_to_group("player")
 	root.collision_layer = 1  # Layer 1: player
-	root.collision_mask = 0   # Player doesn't need to collide with enemies physically
+	root.collision_mask = 2   # Detect layer 2 (enemies) for slide collisions
 
 	# Sprite — load individual creature image, script handles swapping on evolution
 	var sprite := Sprite2D.new()
@@ -72,15 +72,15 @@ func _build_enemy() -> void:
 	# Detection area for combat trigger — must detect player (layer 1)
 	var area := Area2D.new()
 	area.name = "DetectionArea"
-	area.collision_layer = 0     # Area itself is on no layer
-	area.collision_mask = 1      # Detects layer 1 (player)
+	area.collision_layer = 4     # Put area on layer 3 (bitmask 4) — distinct from bodies
+	area.collision_mask = 1      # Detects layer 1 (player bodies)
 	area.monitoring = true
 	area.monitorable = false
 
 	var area_col := CollisionShape2D.new()
 	area_col.name = "AreaShape"
 	var area_shape := CircleShape2D.new()
-	area_shape.radius = 14.0
+	area_shape.radius = 20.0    # Bigger detection radius so it's easier to trigger
 	area_col.shape = area_shape
 	area.add_child(area_col)
 	root.add_child(area)
