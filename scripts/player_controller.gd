@@ -25,6 +25,23 @@ var CREATURE_SPRITES: Dictionary = {
 	"tiktaalik": "res://assets/img/sprite_tiktaalik.png",
 	"hallucigenia": "res://assets/img/sprite_hallucigenia.png",
 	"opabinia": "res://assets/img/sprite_opabinia.png",
+	# Era 4: Carboniferous
+	"ichthyostega": "res://assets/img/sprite_ichthyostega.png",
+	"eryops": "res://assets/img/sprite_ichthyostega.png",
+	"hylonomus": "res://assets/img/sprite_ichthyostega.png",
+	"petrolacosaurus": "res://assets/img/sprite_ichthyostega.png",
+	"dimetrodon": "res://assets/img/sprite_dimetrodon.png",
+	# Era 8: Cretaceous
+	"coelophysis": "res://assets/img/sprite_velociraptor.png",
+	"allosaurus": "res://assets/img/sprite_trex.png",
+	"stegosaurus": "res://assets/img/sprite_stegosaurus.png",
+	"tyrannosaurus": "res://assets/img/sprite_trex.png",
+	"triceratops": "res://assets/img/sprite_triceratops.png",
+	# Era 10: Mammals
+	"purgatorius": "res://assets/img/sprite_pikaia.png",
+	"aegyptopithecus": "res://assets/img/sprite_australopithecus.png",
+	"australopithecus": "res://assets/img/sprite_australopithecus.png",
+	"homo_sapiens": "res://assets/img/sprite_australopithecus.png",
 }
 
 # Fallback: if a creature doesn't have a dedicated sprite, find closest match

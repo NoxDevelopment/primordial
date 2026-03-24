@@ -50,6 +50,7 @@ func _ready() -> void:
 	GameManager.game_over.connect(_on_game_over)
 	GameManager.creature_evolved.connect(_on_evolved)
 	GameManager.combat_finished.connect(_on_combat_finished)
+	GameManager.era_changed.connect(_on_era_changed)
 
 	# Show intro tutorial
 	call_deferred("_show_intro")
@@ -173,6 +174,39 @@ func _on_evolved(old_id: String, new_id: String) -> void:
 					"portrait": "res://assets/img/professor_helix.png",
 				}]
 				_dialogue.show_dialogue(lines)
+
+func _on_era_changed(era: int) -> void:
+	# Swap tileset based on era
+	var tileset_map: Dictionary = {
+		1: "res://assets/img/ocean_tiles.png",
+		2: "res://assets/img/ocean_tiles.png",
+		3: "res://assets/img/ocean_tiles.png",
+		4: "res://assets/img/swamp_tiles.png",
+		5: "res://assets/img/desert_tiles.png",
+		6: "res://assets/img/desert_tiles.png",
+		7: "res://assets/img/forest_tiles.png",
+		8: "res://assets/img/forest_tiles.png",
+		9: "res://assets/img/forest_tiles.png",
+		10: "res://assets/img/iceage_tiles.png",
+	}
+	var tileset_path: String = tileset_map.get(era, "res://assets/img/ocean_tiles.png")
+	if ResourceLoader.exists(tileset_path):
+		var new_tex: Texture2D = load(tileset_path)
+		# Update all ocean tile sprites
+		for child in get_children():
+			if child.name.begins_with("OceanTile_") and child is Sprite2D:
+				child.texture = new_tex
+
+	# Swap water overlay color based on era
+	if _water_overlay and _water_overlay.has_method("_ready"):
+		var overlay: ColorRect = _water_overlay.get_node_or_null("WaterTint")
+		if overlay:
+			match era:
+				1, 2, 3: overlay.color = Color(0.05, 0.15, 0.35, 0.18)  # Blue underwater
+				4: overlay.color = Color(0.05, 0.15, 0.05, 0.12)  # Green swamp mist
+				5, 6: overlay.color = Color(0.15, 0.08, 0.02, 0.10)  # Orange desert haze
+				7, 8: overlay.color = Color(0.02, 0.10, 0.02, 0.08)  # Light forest green
+				9, 10: overlay.color = Color(0.10, 0.12, 0.18, 0.12)  # Cold blue-grey
 
 func _on_combat_finished(victory: bool) -> void:
 	if victory and _player and _player.has_signal("hp_changed"):

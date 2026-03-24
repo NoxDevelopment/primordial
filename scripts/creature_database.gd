@@ -27,9 +27,19 @@ extends Node
 var creatures: Dictionary = {}
 var era_trees: Dictionary = {}  # era_id -> Array of creature_ids in order
 
+const EraData = preload("res://scripts/creature_database_eras.gd")
+
 func _ready() -> void:
 	_build_era1_creatures()
 	_build_era1_tree()
+	# Load additional eras
+	EraData.build_era4_creatures(creatures)
+	EraData.build_era8_creatures(creatures)
+	EraData.build_era10_creatures(creatures)
+	# Build era trees
+	era_trees[4] = ["ichthyostega", "eryops", "hylonomus", "petrolacosaurus", "dimetrodon"]
+	era_trees[8] = ["coelophysis", "allosaurus", "stegosaurus", "tyrannosaurus", "triceratops"]
+	era_trees[10] = ["purgatorius", "aegyptopithecus", "australopithecus", "homo_sapiens"]
 
 func get_creature(id: String) -> Dictionary:
 	return creatures.get(id, {})
@@ -417,6 +427,8 @@ func _build_era1_extra_enemies() -> void:
 
 func _build_enemies() -> void:
 	_build_era1_extra_enemies()
+	EraData.build_era4_enemies(enemies)
+	EraData.build_era10_enemies(enemies)
 	enemies["trilobite"] = {
 		"id": "trilobite", "name": "Trilobite", "era": 1,
 		"scientific_name": "Calymene blumenbachii",
