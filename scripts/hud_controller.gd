@@ -48,11 +48,16 @@ func _update_creature() -> void:
 func _update_era() -> void:
 	if _era_label:
 		var era_names: Dictionary = {
-			1: "Era 1: Primordial Seas",
-			2: "Era 2: Conquest of Land",
-			3: "Era 3: Rise of Reptiles",
-			4: "Era 4: Age of Dinosaurs",
-			5: "Era 5: Age of Mammals",
+			1: "Era 1: Cambrian Seas (540 MYA)",
+			2: "Era 2: Ordovician-Silurian (485 MYA)",
+			3: "Era 3: Age of Fish (420 MYA)",
+			4: "Era 4: Carboniferous (360 MYA)",
+			5: "Era 5: Permian (300 MYA)",
+			6: "Era 6: Triassic (252 MYA)",
+			7: "Era 7: Jurassic (200 MYA)",
+			8: "Era 8: Cretaceous (145 MYA)",
+			9: "Era 9: Paleogene (66 MYA)",
+			10: "Era 10: Neogene (23 MYA)",
 		}
 		_era_label.text = era_names.get(GameManager.current_era, "Unknown Era")
 

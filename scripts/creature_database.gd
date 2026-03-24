@@ -360,7 +360,63 @@ func get_era_enemies(era: int) -> Array:
 			result.append(eid)
 	return result
 
+func _build_era1_extra_enemies() -> void:
+	enemies["hallucigenia"] = {
+		"id": "hallucigenia", "name": "Hallucigenia", "era": 1,
+		"scientific_name": "Hallucigenia sparsa",
+		"hp": 12, "attack": 3, "defense": 8, "wisdom": 1,
+		"evo_genes_reward": 5,
+		"description": "One of the strangest animals ever found. A Cambrian worm with seven pairs of spines on its back and tentacle-like legs. Scientists originally reconstructed it upside-down.",
+		"abilities": [{"name": "Spine Wall", "cost_hp": 2, "power": 0, "description": "Raises spines, doubling defense for 1 turn."}],
+		"color": Color(0.5, 0.4, 0.6),
+		"generation": 1,
+		"portrait": "res://assets/img/portrait_trilobite.png",
+	}
+
+	enemies["opabinia"] = {
+		"id": "opabinia", "name": "Opabinia", "era": 1,
+		"scientific_name": "Opabinia regalis",
+		"hp": 25, "attack": 8, "defense": 4, "wisdom": 6,
+		"evo_genes_reward": 10,
+		"description": "Five eyes and a flexible proboscis ending in a claw. When first presented to scientists in 1972, the audience burst out laughing — they thought it was a joke. It was real.",
+		"abilities": [
+			{"name": "Proboscis Grab", "cost_hp": 4, "power": 12, "description": "The flexible trunk snatches prey with its claw."},
+			{"name": "Five-Eyed Watch", "cost_hp": 2, "power": 0, "description": "Five eyes see everything. Cannot be surprised next turn."},
+		],
+		"color": Color(0.4, 0.5, 0.3),
+		"generation": 2,
+		"portrait": "res://assets/img/portrait_trilobite.png",
+	}
+
+	enemies["wiwaxia"] = {
+		"id": "wiwaxia", "name": "Wiwaxia", "era": 1,
+		"scientific_name": "Wiwaxia corrugata",
+		"hp": 18, "attack": 2, "defense": 12, "wisdom": 1,
+		"evo_genes_reward": 7,
+		"description": "An armored Cambrian slug covered in overlapping scales and long defensive spines. A living fortress that grazed on bacterial mats on the seafloor.",
+		"abilities": [{"name": "Spine Armor", "cost_hp": 0, "power": 0, "description": "Permanent +4 defense from scales and spines."}],
+		"color": Color(0.6, 0.55, 0.4),
+		"generation": 1,
+		"portrait": "res://assets/img/portrait_trilobite.png",
+	}
+
+	enemies["orthoceras"] = {
+		"id": "orthoceras", "name": "Orthoceras", "era": 1,
+		"scientific_name": "Orthoceras regulare",
+		"hp": 40, "attack": 12, "defense": 10, "wisdom": 7,
+		"evo_genes_reward": 16,
+		"description": "A straight-shelled nautiloid up to half a meter long. Jet-propelled predator of the Ordovician seas. Ancestor of modern squid and octopus.",
+		"abilities": [
+			{"name": "Tentacle Snare", "cost_hp": 5, "power": 16, "description": "Grasping tentacles hold prey tight."},
+			{"name": "Ink Cloud", "cost_hp": 4, "power": 0, "description": "Releases ink cloud. Enemy accuracy halved for 2 turns."},
+		],
+		"color": Color(0.5, 0.45, 0.5),
+		"generation": 3,
+		"portrait": "res://assets/img/portrait_cameroceras.png",
+	}
+
 func _build_enemies() -> void:
+	_build_era1_extra_enemies()
 	enemies["trilobite"] = {
 		"id": "trilobite", "name": "Trilobite", "era": 1,
 		"scientific_name": "Calymene blumenbachii",

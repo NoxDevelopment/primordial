@@ -18,12 +18,23 @@ var CREATURE_SPRITES: Dictionary = {
 	"arandaspis": "res://assets/img/sprite_trilobite.png",
 	"cephalaspis": "res://assets/img/sprite_trilobite.png",
 	"climatius": "res://assets/img/sprite_nautiloid.png",
-	"cladoselache": "res://assets/img/sprite_anomalocaris.png",
+	"cladoselache": "res://assets/img/sprite_cladoselache.png",
 	"bothriolepis": "res://assets/img/sprite_trilobite.png",
-	"dunkleosteus": "res://assets/img/sprite_anomalocaris.png",
-	"eusthenopteron": "res://assets/img/sprite_nautiloid.png",
-	"tiktaalik": "res://assets/img/sprite_eurypterid.png",
+	"dunkleosteus": "res://assets/img/sprite_dunkleosteus.png",
+	"eusthenopteron": "res://assets/img/sprite_eusthenopteron.png",
+	"tiktaalik": "res://assets/img/sprite_tiktaalik.png",
+	"hallucigenia": "res://assets/img/sprite_hallucigenia.png",
+	"opabinia": "res://assets/img/sprite_opabinia.png",
 }
+
+# Fallback: if a creature doesn't have a dedicated sprite, find closest match
+func _get_sprite_path(creature_id: String) -> String:
+	if CREATURE_SPRITES.has(creature_id):
+		var path: String = CREATURE_SPRITES[creature_id]
+		if ResourceLoader.exists(path):
+			return path
+	# Fallback to any existing sprite
+	return "res://assets/img/sprite_pikaia.png"
 
 func _ready() -> void:
 	_sprite = get_node_or_null("Sprite2D")
@@ -89,8 +100,8 @@ func _update_appearance() -> void:
 	var creature: Dictionary = EvoSystem.get_current_creature()
 	var creature_id: String = creature.get("id", "")
 
-	var sprite_path: String = CREATURE_SPRITES.get(creature_id, "")
-	if sprite_path != "" and ResourceLoader.exists(sprite_path):
+	var sprite_path: String = _get_sprite_path(creature_id)
+	if ResourceLoader.exists(sprite_path):
 		_sprite.texture = load(sprite_path)
 		_sprite.region_enabled = false
 		_sprite.modulate = Color.WHITE

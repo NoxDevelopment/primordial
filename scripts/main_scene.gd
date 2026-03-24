@@ -43,6 +43,9 @@ func _ready() -> void:
 	# Start game
 	GameManager.start_game()
 
+	# Wire story system to dialogue
+	Story.set_dialogue_node(_dialogue)
+
 	# Connect signals
 	GameManager.game_over.connect(_on_game_over)
 	GameManager.creature_evolved.connect(_on_evolved)
@@ -149,22 +152,27 @@ func _on_game_over(reason: String) -> void:
 	add_child(overlay)
 
 func _on_evolved(old_id: String, new_id: String) -> void:
-	var new_creature: Dictionary = CreatureDB.get_creature(new_id)
-	var creature_name: String = new_creature.get("name", "Unknown")
-	var sci_name: String = new_creature.get("scientific_name", "")
-
-	# Professor Helix comments on your evolution!
-	if _dialogue and _dialogue.has_method("show_dialogue"):
-		var lines: Array[Dictionary] = [
-			{
-				"speaker": "Professor Helix",
-				"text": "Remarkable! You've evolved into %s (%s)! %s" % [
-					creature_name, sci_name, new_creature.get("description", "")
-				],
-				"portrait": "res://assets/img/professor_helix.png",
-			},
-		]
-		_dialogue.show_dialogue(lines)
+	# Story system handles milestone narration via story_system.gd
+	# For non-milestone evolutions, show a brief notification
+	if not Story.has_triggered(new_id) and not Story.has_triggered("first_fish") or true:
+		var new_creature: Dictionary = CreatureDB.get_creature(new_id)
+		if new_creature.is_empty():
+			return
+		# Only show generic evolution popup if Story didn't already handle it
+		# (Story triggers on specific creature IDs, this catches the rest)
+		var event_ids: Array = ["haikouichthys", "climatius", "cladoselache", "dunkleosteus", "eusthenopteron", "tiktaalik"]
+		if new_id not in event_ids:
+			if _dialogue and _dialogue.has_method("show_dialogue"):
+				var lines: Array[Dictionary] = [{
+					"speaker": "Professor Helix",
+					"text": "You've evolved into %s (%s)! %s" % [
+						new_creature.get("name", "Unknown"),
+						new_creature.get("scientific_name", ""),
+						new_creature.get("description", ""),
+					],
+					"portrait": "res://assets/img/professor_helix.png",
+				}]
+				_dialogue.show_dialogue(lines)
 
 func _on_combat_finished(victory: bool) -> void:
 	if victory and _player and _player.has_signal("hp_changed"):
