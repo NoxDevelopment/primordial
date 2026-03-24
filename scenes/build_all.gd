@@ -19,7 +19,7 @@ func _build_player() -> void:
 	root.motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	root.add_to_group("player")
 	root.collision_layer = 1  # Layer 1: player
-	root.collision_mask = 2   # Detect layer 2 (enemies) for slide collisions
+	root.collision_mask = 2 | 8  # Detect layer 2 (enemies) + layer 4 (obstacles, bitmask 8)
 
 	# Sprite — load individual creature image, script handles swapping on evolution
 	var sprite := Sprite2D.new()
@@ -50,7 +50,7 @@ func _build_enemy() -> void:
 	root.name = "Enemy"
 	root.motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	root.collision_layer = 2  # Layer 2: enemies
-	root.collision_mask = 0   # Enemies don't collide with each other
+	root.collision_mask = 8   # Enemies collide with obstacles (layer 4, bitmask 8)
 
 	# Sprite — script handles loading correct texture per enemy type in setup()
 	var sprite := Sprite2D.new()
@@ -286,6 +286,78 @@ func _build_main() -> void:
 		ground.position = Vector2(-1000, -1000)
 		ground.size = Vector2(2000, 2000)
 		root.add_child(ground)
+
+	# --- LEVEL GEOMETRY: rocks, coral, obstacles ---
+	# Large rocks (collision obstacles)
+	var rock_positions: Array = [
+		Vector2(-180, -120), Vector2(200, 80), Vector2(-60, 250),
+		Vector2(300, -200), Vector2(-300, 100), Vector2(150, -300),
+		Vector2(-250, -280), Vector2(350, 250), Vector2(-400, 300),
+		Vector2(100, 400), Vector2(-150, -400), Vector2(400, -100),
+	]
+	for i in range(rock_positions.size()):
+		var rock := StaticBody2D.new()
+		rock.name = "Rock_%d" % i
+		rock.position = rock_positions[i]
+		rock.collision_layer = 8  # Layer 4 (bitmask 8) — obstacles
+		rock.collision_mask = 0
+
+		var rock_shape := CollisionShape2D.new()
+		var shape := CircleShape2D.new()
+		shape.radius = randf_range(12.0, 28.0)
+		rock_shape.shape = shape
+		rock.add_child(rock_shape)
+
+		# Visual — dark colored rectangle for now
+		var rock_visual := ColorRect.new()
+		var rock_size: float = shape.radius * 2.0
+		rock_visual.size = Vector2(rock_size, rock_size)
+		rock_visual.position = Vector2(-rock_size / 2.0, -rock_size / 2.0)
+		rock_visual.color = Color(
+			randf_range(0.12, 0.2),
+			randf_range(0.12, 0.18),
+			randf_range(0.15, 0.22),
+			0.85
+		)
+		rock.add_child(rock_visual)
+		root.add_child(rock)
+
+	# Coral clusters (visual only — no collision, different colors)
+	var coral_colors: Array = [
+		Color(0.9, 0.35, 0.3, 0.9),   # Red coral
+		Color(1.0, 0.6, 0.2, 0.85),   # Orange coral
+		Color(0.9, 0.5, 0.6, 0.9),    # Pink coral
+		Color(0.4, 0.8, 0.5, 0.85),   # Green seaweed
+		Color(0.3, 0.6, 0.7, 0.8),    # Blue-green algae
+		Color(0.7, 0.7, 0.3, 0.85),   # Yellow sponge
+	]
+	for i in range(30):
+		var coral := ColorRect.new()
+		coral.name = "Coral_%d" % i
+		coral.color = coral_colors[i % coral_colors.size()]
+		# Varied sizes — some tall thin, some wide short
+		if randf() > 0.5:
+			coral.size = Vector2(randf_range(4, 10), randf_range(12, 32))  # Tall coral
+		else:
+			coral.size = Vector2(randf_range(10, 24), randf_range(6, 12))  # Wide sponge
+		coral.position = Vector2(randf_range(-500, 500), randf_range(-500, 500))
+		# Don't place coral on top of rocks
+		var too_close: bool = false
+		for rp in rock_positions:
+			if coral.position.distance_to(rp) < 40.0:
+				too_close = true
+				break
+		if not too_close:
+			root.add_child(coral)
+
+	# Thermal vents (small glowing spots)
+	for i in range(4):
+		var vent := ColorRect.new()
+		vent.name = "Vent_%d" % i
+		vent.color = Color(1.0, 0.5, 0.1, 0.6)
+		vent.size = Vector2(8, 8)
+		vent.position = Vector2(randf_range(-400, 400), randf_range(-400, 400))
+		root.add_child(vent)
 
 	# Player instance
 	var player_scene: PackedScene = load("res://scenes/player.tscn")

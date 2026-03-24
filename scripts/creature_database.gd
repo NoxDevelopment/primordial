@@ -370,7 +370,58 @@ func get_era_enemies(era: int) -> Array:
 			result.append(eid)
 	return result
 
+func _build_era1_starter_enemies() -> void:
+	# VERY EASY prey for Pikaia — generation 0, low stats
+	enemies["plankton"] = {
+		"id": "plankton", "name": "Plankton Swarm", "era": 1,
+		"scientific_name": "Zooplankton",
+		"hp": 5, "attack": 1, "defense": 0, "wisdom": 0,
+		"evo_genes_reward": 3,
+		"description": "A cloud of tiny drifting organisms. The foundation of the ocean food web. Easy prey for even the smallest predator.",
+		"abilities": [],
+		"color": Color(0.7, 0.8, 0.7),
+		"generation": 0,
+		"portrait": "res://assets/img/portrait_jellyfish.png",
+	}
+
+	enemies["sea_worm"] = {
+		"id": "sea_worm", "name": "Priapulid Worm", "era": 1,
+		"scientific_name": "Ottoia prolifica",
+		"hp": 8, "attack": 2, "defense": 1, "wisdom": 0,
+		"evo_genes_reward": 4,
+		"description": "A burrowing predatory worm of the Cambrian seabed. Common but not dangerous. Named after the Greek god Priapus due to its... shape.",
+		"abilities": [{"name": "Burrow", "cost_hp": 1, "power": 0, "description": "Digs into sediment. Avoids damage for 1 turn."}],
+		"color": Color(0.6, 0.5, 0.45),
+		"generation": 0,
+		"portrait": "res://assets/img/portrait_trilobite.png",
+	}
+
+	enemies["small_sponge"] = {
+		"id": "small_sponge", "name": "Sea Sponge", "era": 1,
+		"scientific_name": "Vauxia gracilenta",
+		"hp": 10, "attack": 0, "defense": 3, "wisdom": 0,
+		"evo_genes_reward": 3,
+		"description": "One of the oldest multicellular animals. Sponges don't move, don't think, and don't fight back. But they're tough — they've survived every mass extinction for 600 million years.",
+		"abilities": [],
+		"color": Color(0.7, 0.6, 0.5),
+		"generation": 0,
+		"portrait": "res://assets/img/portrait_trilobite.png",
+	}
+
+	enemies["small_trilobite"] = {
+		"id": "small_trilobite", "name": "Small Trilobite", "era": 1,
+		"scientific_name": "Elrathia kingii",
+		"hp": 12, "attack": 3, "defense": 4, "wisdom": 1,
+		"evo_genes_reward": 5,
+		"description": "A common, palm-sized trilobite. Found in enormous numbers — the 'pigeons of the Cambrian'. Easy prey but they can curl up defensively.",
+		"abilities": [{"name": "Curl Up", "cost_hp": 1, "power": 0, "description": "Roll into ball. Defense doubled for 1 turn."}],
+		"color": Color(0.55, 0.45, 0.35),
+		"generation": 1,
+		"portrait": "res://assets/img/portrait_trilobite.png",
+	}
+
 func _build_era1_extra_enemies() -> void:
+	_build_era1_starter_enemies()
 	enemies["hallucigenia"] = {
 		"id": "hallucigenia", "name": "Hallucigenia", "era": 1,
 		"scientific_name": "Hallucigenia sparsa",

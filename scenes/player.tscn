@@ -5,14 +5,14 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
 
-[node name="Player" type="CharacterBody2D" unique_id=1588122032]
-collision_mask = 2
+[node name="Player" type="CharacterBody2D" unique_id=658373684]
+collision_mask = 10
 motion_mode = 1
 script = ExtResource("1_g2els")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1655804731]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=769728861]
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("2_qhqgy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=508299694]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=86097500]
 shape = SubResource("CircleShape2D_dqkch")

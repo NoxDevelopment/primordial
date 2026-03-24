@@ -2,18 +2,18 @@
 
 [ext_resource type="Script" path="res://scripts/combat_ui_controller.gd" id="1_icss1"]
 
-[node name="CombatScreen" type="CanvasLayer" unique_id=395243524]
+[node name="CombatScreen" type="CanvasLayer" unique_id=1177418965]
 layer = 20
 script = ExtResource("1_icss1")
 
-[node name="CombatBG" type="ColorRect" parent="." unique_id=631664734]
+[node name="CombatBG" type="ColorRect" parent="." unique_id=1144180210]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0.02, 0.05, 0.12, 0.95)
 
-[node name="CombatPanel" type="PanelContainer" parent="." unique_id=1631490523]
+[node name="CombatPanel" type="PanelContainer" parent="." unique_id=23876237]
 visible = false
 anchors_preset = -1
 anchor_left = 0.05
@@ -21,21 +21,21 @@ anchor_top = 0.02
 anchor_right = 0.95
 anchor_bottom = 0.98
 
-[node name="MainLayout" type="VBoxContainer" parent="CombatPanel" unique_id=27808367]
+[node name="MainLayout" type="VBoxContainer" parent="CombatPanel" unique_id=1819647801]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="EnemySection" type="VBoxContainer" parent="CombatPanel/MainLayout" unique_id=1073461712]
+[node name="EnemySection" type="VBoxContainer" parent="CombatPanel/MainLayout" unique_id=1420017659]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="EnemyName" type="Label" parent="CombatPanel/MainLayout/EnemySection" unique_id=1793346207]
+[node name="EnemyName" type="Label" parent="CombatPanel/MainLayout/EnemySection" unique_id=701934307]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
 text = "Enemy"
 horizontal_alignment = 1
 
-[node name="EnemyPortraitTex" type="TextureRect" parent="CombatPanel/MainLayout/EnemySection" unique_id=622619174]
+[node name="EnemyPortraitTex" type="TextureRect" parent="CombatPanel/MainLayout/EnemySection" unique_id=991788188]
 visible = false
 custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
@@ -43,42 +43,42 @@ size_flags_horizontal = 4
 expand_mode = 1
 stretch_mode = 5
 
-[node name="EnemyPortrait" type="ColorRect" parent="CombatPanel/MainLayout/EnemySection" unique_id=829812016]
+[node name="EnemyPortrait" type="ColorRect" parent="CombatPanel/MainLayout/EnemySection" unique_id=1244511551]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4
 color = Color(0.8, 0.3, 0.3, 1)
 
-[node name="EnemyHPBar" type="ProgressBar" parent="CombatPanel/MainLayout/EnemySection" unique_id=1372192219]
+[node name="EnemyHPBar" type="ProgressBar" parent="CombatPanel/MainLayout/EnemySection" unique_id=1059372142]
 custom_minimum_size = Vector2(300, 20)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="CombatLog" type="RichTextLabel" parent="CombatPanel/MainLayout" unique_id=282631275]
+[node name="CombatLog" type="RichTextLabel" parent="CombatPanel/MainLayout" unique_id=124886596]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 bbcode_enabled = true
 scroll_following = true
 
-[node name="PlayerHPBar" type="ProgressBar" parent="CombatPanel/MainLayout" unique_id=635103197]
+[node name="PlayerHPBar" type="ProgressBar" parent="CombatPanel/MainLayout" unique_id=1867227374]
 custom_minimum_size = Vector2(400, 25)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Actions" type="HBoxContainer" parent="CombatPanel/MainLayout" unique_id=1231714642]
+[node name="Actions" type="HBoxContainer" parent="CombatPanel/MainLayout" unique_id=70393523]
 layout_mode = 2
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="FightBtn" type="Button" parent="CombatPanel/MainLayout/Actions" unique_id=1251943785]
+[node name="FightBtn" type="Button" parent="CombatPanel/MainLayout/Actions" unique_id=767199525]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 text = "Fight"
 
-[node name="Abilities" type="VBoxContainer" parent="CombatPanel/MainLayout/Actions" unique_id=76062859]
+[node name="Abilities" type="VBoxContainer" parent="CombatPanel/MainLayout/Actions" unique_id=1734062493]
 layout_mode = 2
 
-[node name="EscapeBtn" type="Button" parent="CombatPanel/MainLayout/Actions" unique_id=156540107]
+[node name="EscapeBtn" type="Button" parent="CombatPanel/MainLayout/Actions" unique_id=891390536]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 text = "Escape"

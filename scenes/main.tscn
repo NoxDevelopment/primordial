@@ -11,155 +11,609 @@
 [ext_resource type="PackedScene" path="res://scenes/combat_screen.tscn" id="9_dp3eg"]
 [ext_resource type="Script" path="res://scripts/combat_ui_controller.gd" id="10_0ld40"]
 
-[node name="Main" type="Node2D" unique_id=1366265320]
+[sub_resource type="CircleShape2D" id="CircleShape2D_gqmmt"]
+radius = 14.637181
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yc10j"]
+radius = 21.903488
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jscy8"]
+radius = 18.954073
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pm3ni"]
+radius = 20.78495
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y6deb"]
+radius = 16.058718
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_og1vs"]
+radius = 18.289175
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2wyq8"]
+radius = 12.879523
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vxglm"]
+radius = 19.038662
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2f3dj"]
+radius = 24.300163
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yq6so"]
+radius = 18.973663
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fv21b"]
+radius = 22.38518
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tel4y"]
+radius = 22.679085
+
+[node name="Main" type="Node2D" unique_id=1224986876]
 script = ExtResource("1_choun")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=709269132]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=446803636]
 zoom = Vector2(2, 2)
 
-[node name="OceanTile_0_0" type="Sprite2D" parent="." unique_id=1316230936]
+[node name="OceanTile_0_0" type="Sprite2D" parent="." unique_id=1116832153]
 position = Vector2(-1024, -1024)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_0_1" type="Sprite2D" parent="." unique_id=929821925]
+[node name="OceanTile_0_1" type="Sprite2D" parent="." unique_id=2088584351]
 position = Vector2(-1024, -512)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_0_2" type="Sprite2D" parent="." unique_id=869425416]
+[node name="OceanTile_0_2" type="Sprite2D" parent="." unique_id=1758856511]
 position = Vector2(-1024, 0)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_0_3" type="Sprite2D" parent="." unique_id=1142759061]
+[node name="OceanTile_0_3" type="Sprite2D" parent="." unique_id=893024692]
 position = Vector2(-1024, 512)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_0_4" type="Sprite2D" parent="." unique_id=1800501786]
+[node name="OceanTile_0_4" type="Sprite2D" parent="." unique_id=1666235949]
 position = Vector2(-1024, 1024)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_1_0" type="Sprite2D" parent="." unique_id=1884420964]
+[node name="OceanTile_1_0" type="Sprite2D" parent="." unique_id=1216634708]
 position = Vector2(-512, -1024)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_1_1" type="Sprite2D" parent="." unique_id=1136949748]
+[node name="OceanTile_1_1" type="Sprite2D" parent="." unique_id=646582142]
 position = Vector2(-512, -512)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_1_2" type="Sprite2D" parent="." unique_id=2096622814]
+[node name="OceanTile_1_2" type="Sprite2D" parent="." unique_id=344574783]
 position = Vector2(-512, 0)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_1_3" type="Sprite2D" parent="." unique_id=1316212681]
+[node name="OceanTile_1_3" type="Sprite2D" parent="." unique_id=798384086]
 position = Vector2(-512, 512)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_1_4" type="Sprite2D" parent="." unique_id=193385178]
+[node name="OceanTile_1_4" type="Sprite2D" parent="." unique_id=1141992652]
 position = Vector2(-512, 1024)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_2_0" type="Sprite2D" parent="." unique_id=478395949]
+[node name="OceanTile_2_0" type="Sprite2D" parent="." unique_id=95036644]
 position = Vector2(0, -1024)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_2_1" type="Sprite2D" parent="." unique_id=1446859665]
+[node name="OceanTile_2_1" type="Sprite2D" parent="." unique_id=1197963866]
 position = Vector2(0, -512)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_2_2" type="Sprite2D" parent="." unique_id=452194746]
+[node name="OceanTile_2_2" type="Sprite2D" parent="." unique_id=1847738320]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_2_3" type="Sprite2D" parent="." unique_id=328776632]
+[node name="OceanTile_2_3" type="Sprite2D" parent="." unique_id=469281471]
 position = Vector2(0, 512)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_2_4" type="Sprite2D" parent="." unique_id=215460382]
+[node name="OceanTile_2_4" type="Sprite2D" parent="." unique_id=285363009]
 position = Vector2(0, 1024)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_3_0" type="Sprite2D" parent="." unique_id=787349854]
+[node name="OceanTile_3_0" type="Sprite2D" parent="." unique_id=1599036473]
 position = Vector2(512, -1024)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_3_1" type="Sprite2D" parent="." unique_id=1706075904]
+[node name="OceanTile_3_1" type="Sprite2D" parent="." unique_id=788863377]
 position = Vector2(512, -512)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_3_2" type="Sprite2D" parent="." unique_id=300487159]
+[node name="OceanTile_3_2" type="Sprite2D" parent="." unique_id=1437226887]
 position = Vector2(512, 0)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_3_3" type="Sprite2D" parent="." unique_id=1375653617]
+[node name="OceanTile_3_3" type="Sprite2D" parent="." unique_id=1479525576]
 position = Vector2(512, 512)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_3_4" type="Sprite2D" parent="." unique_id=348986227]
+[node name="OceanTile_3_4" type="Sprite2D" parent="." unique_id=317642624]
 position = Vector2(512, 1024)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_4_0" type="Sprite2D" parent="." unique_id=1977139806]
+[node name="OceanTile_4_0" type="Sprite2D" parent="." unique_id=1344054918]
 position = Vector2(1024, -1024)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_4_1" type="Sprite2D" parent="." unique_id=1656382816]
+[node name="OceanTile_4_1" type="Sprite2D" parent="." unique_id=106218409]
 position = Vector2(1024, -512)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_4_2" type="Sprite2D" parent="." unique_id=1689098338]
+[node name="OceanTile_4_2" type="Sprite2D" parent="." unique_id=1745436347]
 position = Vector2(1024, 0)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_4_3" type="Sprite2D" parent="." unique_id=288654998]
+[node name="OceanTile_4_3" type="Sprite2D" parent="." unique_id=1791789325]
 position = Vector2(1024, 512)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="OceanTile_4_4" type="Sprite2D" parent="." unique_id=238810490]
+[node name="OceanTile_4_4" type="Sprite2D" parent="." unique_id=1201010697]
 position = Vector2(1024, 1024)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ya4ey")
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=1588122032 instance=ExtResource("3_eb6dy")]
-collision_mask = 2
+[node name="Rock_0" type="StaticBody2D" parent="." unique_id=271468219]
+position = Vector2(-180, -120)
+collision_layer = 8
+collision_mask = 0
+
+[node name="@CollisionShape2D@7" type="CollisionShape2D" parent="Rock_0" unique_id=1434778611]
+shape = SubResource("CircleShape2D_gqmmt")
+
+[node name="@ColorRect@8" type="ColorRect" parent="Rock_0" unique_id=990632656]
+offset_left = -14.637181
+offset_top = -14.637181
+offset_right = 14.637181
+offset_bottom = 14.637181
+color = Color(0.17048383, 0.17144977, 0.16392943, 0.85)
+
+[node name="Rock_1" type="StaticBody2D" parent="." unique_id=642631371]
+position = Vector2(200, 80)
+collision_layer = 8
+collision_mask = 0
+
+[node name="@CollisionShape2D@9" type="CollisionShape2D" parent="Rock_1" unique_id=1258270823]
+shape = SubResource("CircleShape2D_yc10j")
+
+[node name="@ColorRect@10" type="ColorRect" parent="Rock_1" unique_id=90342160]
+offset_left = -21.903488
+offset_top = -21.903488
+offset_right = 21.903488
+offset_bottom = 21.903488
+color = Color(0.17631479, 0.16440472, 0.178266, 0.85)
+
+[node name="Rock_2" type="StaticBody2D" parent="." unique_id=835064498]
+position = Vector2(-60, 250)
+collision_layer = 8
+collision_mask = 0
+
+[node name="@CollisionShape2D@11" type="CollisionShape2D" parent="Rock_2" unique_id=1022391980]
+shape = SubResource("CircleShape2D_jscy8")
+
+[node name="@ColorRect@12" type="ColorRect" parent="Rock_2" unique_id=689670387]
+offset_left = -18.954073
+offset_top = -18.954073
+offset_right = 18.954073
+offset_bottom = 18.954073
+color = Color(0.15324315, 0.17499109, 0.15431829, 0.85)
+
+[node name="Rock_3" type="StaticBody2D" parent="." unique_id=878054360]
+position = Vector2(300, -200)
+collision_layer = 8
+collision_mask = 0
+
+[node name="@CollisionShape2D@13" type="CollisionShape2D" parent="Rock_3" unique_id=1703855211]
+shape = SubResource("CircleShape2D_pm3ni")
+
+[node name="@ColorRect@14" type="ColorRect" parent="Rock_3" unique_id=940229572]
+offset_left = -20.78495
+offset_top = -20.78495
+offset_right = 20.78495
+offset_bottom = 20.78495
+color = Color(0.17632234, 0.16024555, 0.1934298, 0.85)
+
+[node name="Rock_4" type="StaticBody2D" parent="." unique_id=330179671]
+position = Vector2(-300, 100)
+collision_layer = 8
+collision_mask = 0
+
+[node name="@CollisionShape2D@15" type="CollisionShape2D" parent="Rock_4" unique_id=1141558971]
+shape = SubResource("CircleShape2D_y6deb")
+
+[node name="@ColorRect@16" type="ColorRect" parent="Rock_4" unique_id=502736818]
+offset_left = -16.058718
+offset_top = -16.058718
+offset_right = 16.058718
+offset_bottom = 16.058718
+color = Color(0.14458048, 0.15942177, 0.21549556, 0.85)
+
+[node name="Rock_5" type="StaticBody2D" parent="." unique_id=1321241349]
+position = Vector2(150, -300)
+collision_layer = 8
+collision_mask = 0
+
+[node name="@CollisionShape2D@17" type="CollisionShape2D" parent="Rock_5" unique_id=1519960313]
+shape = SubResource("CircleShape2D_og1vs")
+
+[node name="@ColorRect@18" type="ColorRect" parent="Rock_5" unique_id=1743302719]
+offset_left = -18.289175
+offset_top = -18.289175
+offset_right = 18.289175
+offset_bottom = 18.289175
+color = Color(0.12119511, 0.17142802, 0.2126659, 0.85)
+
+[node name="Rock_6" type="StaticBody2D" parent="." unique_id=1047223521]
+position = Vector2(-250, -280)
+collision_layer = 8
+collision_mask = 0
+
+[node name="@CollisionShape2D@19" type="CollisionShape2D" parent="Rock_6" unique_id=1694204256]
+shape = SubResource("CircleShape2D_2wyq8")
+
+[node name="@ColorRect@20" type="ColorRect" parent="Rock_6" unique_id=1633042191]
+offset_left = -12.879523
+offset_top = -12.879523
+offset_right = 12.879523
+offset_bottom = 12.879523
+color = Color(0.16307485, 0.16888033, 0.19118375, 0.85)
+
+[node name="Rock_7" type="StaticBody2D" parent="." unique_id=656156863]
+position = Vector2(350, 250)
+collision_layer = 8
+collision_mask = 0
+
+[node name="@CollisionShape2D@21" type="CollisionShape2D" parent="Rock_7" unique_id=795095135]
+shape = SubResource("CircleShape2D_vxglm")
+
+[node name="@ColorRect@22" type="ColorRect" parent="Rock_7" unique_id=1783956728]
+offset_left = -19.038662
+offset_top = -19.038662
+offset_right = 19.038662
+offset_bottom = 19.038662
+color = Color(0.18480015, 0.13964427, 0.18828858, 0.85)
+
+[node name="Rock_8" type="StaticBody2D" parent="." unique_id=374810469]
+position = Vector2(-400, 300)
+collision_layer = 8
+collision_mask = 0
+
+[node name="@CollisionShape2D@23" type="CollisionShape2D" parent="Rock_8" unique_id=38183743]
+shape = SubResource("CircleShape2D_2f3dj")
+
+[node name="@ColorRect@24" type="ColorRect" parent="Rock_8" unique_id=1186574665]
+offset_left = -24.300163
+offset_top = -24.300163
+offset_right = 24.300163
+offset_bottom = 24.300163
+color = Color(0.1438788, 0.175583, 0.18488781, 0.85)
+
+[node name="Rock_9" type="StaticBody2D" parent="." unique_id=1898307459]
+position = Vector2(100, 400)
+collision_layer = 8
+collision_mask = 0
+
+[node name="@CollisionShape2D@25" type="CollisionShape2D" parent="Rock_9" unique_id=2094285134]
+shape = SubResource("CircleShape2D_yq6so")
+
+[node name="@ColorRect@26" type="ColorRect" parent="Rock_9" unique_id=205555083]
+offset_left = -18.973663
+offset_top = -18.973663
+offset_right = 18.973663
+offset_bottom = 18.973663
+color = Color(0.16157857, 0.1262146, 0.18305305, 0.85)
+
+[node name="Rock_10" type="StaticBody2D" parent="." unique_id=88512488]
+position = Vector2(-150, -400)
+collision_layer = 8
+collision_mask = 0
+
+[node name="@CollisionShape2D@27" type="CollisionShape2D" parent="Rock_10" unique_id=1133117906]
+shape = SubResource("CircleShape2D_fv21b")
+
+[node name="@ColorRect@28" type="ColorRect" parent="Rock_10" unique_id=1142872285]
+offset_left = -22.38518
+offset_top = -22.38518
+offset_right = 22.38518
+offset_bottom = 22.38518
+color = Color(0.13593084, 0.13007478, 0.2085703, 0.85)
+
+[node name="Rock_11" type="StaticBody2D" parent="." unique_id=127826689]
+position = Vector2(400, -100)
+collision_layer = 8
+collision_mask = 0
+
+[node name="@CollisionShape2D@29" type="CollisionShape2D" parent="Rock_11" unique_id=464077322]
+shape = SubResource("CircleShape2D_tel4y")
+
+[node name="@ColorRect@30" type="ColorRect" parent="Rock_11" unique_id=762706366]
+offset_left = -22.679085
+offset_top = -22.679085
+offset_right = 22.679085
+offset_bottom = 22.679085
+color = Color(0.17924762, 0.15354931, 0.18664804, 0.85)
+
+[node name="Coral_0" type="ColorRect" parent="." unique_id=1814549721]
+offset_left = -430.33472
+offset_top = 123.15473
+offset_right = -424.6145
+offset_bottom = 149.06042
+color = Color(0.9, 0.35, 0.3, 0.9)
+
+[node name="Coral_1" type="ColorRect" parent="." unique_id=116662119]
+offset_left = -293.3783
+offset_top = -384.032
+offset_right = -284.36725
+offset_bottom = -363.70148
+color = Color(1, 0.6, 0.2, 0.85)
+
+[node name="Coral_2" type="ColorRect" parent="." unique_id=1970009550]
+offset_left = 120.62126
+offset_top = -141.80356
+offset_right = 136.5985
+offset_bottom = -131.2988
+color = Color(0.9, 0.5, 0.6, 0.9)
+
+[node name="Coral_3" type="ColorRect" parent="." unique_id=566448009]
+offset_left = -18.988178
+offset_top = 203.52524
+offset_right = -5.0668917
+offset_bottom = 215.31306
+color = Color(0.4, 0.8, 0.5, 0.85)
+
+[node name="Coral_4" type="ColorRect" parent="." unique_id=1778441335]
+offset_left = 341.4171
+offset_top = -18.807495
+offset_right = 350.42563
+offset_bottom = -4.188958
+color = Color(0.3, 0.6, 0.7, 0.8)
+
+[node name="Coral_5" type="ColorRect" parent="." unique_id=1358034046]
+offset_left = 241.16531
+offset_top = 430.41525
+offset_right = 250.10323
+offset_bottom = 461.18997
+color = Color(0.7, 0.7, 0.3, 0.85)
+
+[node name="Coral_6" type="ColorRect" parent="." unique_id=1327902464]
+offset_left = 265.8158
+offset_top = 271.02902
+offset_right = 282.24173
+offset_bottom = 281.87622
+color = Color(0.9, 0.35, 0.3, 0.9)
+
+[node name="Coral_7" type="ColorRect" parent="." unique_id=248200537]
+offset_left = -309.98553
+offset_top = -58.465904
+offset_right = -296.54666
+offset_bottom = -52.321995
+color = Color(1, 0.6, 0.2, 0.85)
+
+[node name="Coral_8" type="ColorRect" parent="." unique_id=960302652]
+offset_left = 257.05518
+offset_top = -356.32974
+offset_right = 261.73297
+offset_bottom = -337.1881
+color = Color(0.9, 0.5, 0.6, 0.9)
+
+[node name="Coral_9" type="ColorRect" parent="." unique_id=1270805319]
+offset_left = 408.51584
+offset_top = -428.96854
+offset_right = 417.68213
+offset_bottom = -413.6461
+color = Color(0.4, 0.8, 0.5, 0.85)
+
+[node name="Coral_10" type="ColorRect" parent="." unique_id=696269585]
+offset_left = 49.682045
+offset_top = 110.66179
+offset_right = 55.334354
+offset_bottom = 123.05547
+color = Color(0.3, 0.6, 0.7, 0.8)
+
+[node name="Coral_11" type="ColorRect" parent="." unique_id=1097613612]
+offset_left = -356.73187
+offset_top = -6.830036
+offset_right = -333.33063
+offset_bottom = 3.1103392
+color = Color(0.7, 0.7, 0.3, 0.85)
+
+[node name="Coral_12" type="ColorRect" parent="." unique_id=177910670]
+offset_left = -449.11395
+offset_top = 177.60272
+offset_right = -439.18738
+offset_bottom = 208.71245
+color = Color(0.9, 0.35, 0.3, 0.9)
+
+[node name="Coral_13" type="ColorRect" parent="." unique_id=681526114]
+offset_left = -348.62643
+offset_top = -188.88423
+offset_right = -328.68436
+offset_bottom = -177.52077
+color = Color(1, 0.6, 0.2, 0.85)
+
+[node name="Coral_14" type="ColorRect" parent="." unique_id=2050223488]
+offset_left = -379.34232
+offset_top = -241.70683
+offset_right = -372.86414
+offset_bottom = -226.87569
+color = Color(0.9, 0.5, 0.6, 0.9)
+
+[node name="Coral_15" type="ColorRect" parent="." unique_id=1924072290]
+offset_left = 60.133682
+offset_top = -414.05756
+offset_right = 65.80569
+offset_bottom = -402.022
+color = Color(0.4, 0.8, 0.5, 0.85)
+
+[node name="Coral_16" type="ColorRect" parent="." unique_id=625795188]
+offset_left = -433.30716
+offset_top = -447.0169
+offset_right = -427.81104
+offset_bottom = -432.64948
+color = Color(0.3, 0.6, 0.7, 0.8)
+
+[node name="Coral_17" type="ColorRect" parent="." unique_id=2123602045]
+offset_left = -77.343834
+offset_top = 303.83093
+offset_right = -70.72124
+offset_bottom = 326.53497
+color = Color(0.7, 0.7, 0.3, 0.85)
+
+[node name="Coral_18" type="ColorRect" parent="." unique_id=1402576216]
+offset_left = 397.27783
+offset_top = -299.93802
+offset_right = 408.11612
+offset_bottom = -290.32675
+color = Color(0.9, 0.35, 0.3, 0.9)
+
+[node name="Coral_19" type="ColorRect" parent="." unique_id=1227935611]
+offset_left = -357.29947
+offset_top = 163.14946
+offset_right = -334.98053
+offset_bottom = 170.49771
+color = Color(1, 0.6, 0.2, 0.85)
+
+[node name="Coral_20" type="ColorRect" parent="." unique_id=656156653]
+offset_left = -31.669645
+offset_top = 358.33652
+offset_right = -18.042938
+offset_bottom = 367.7716
+color = Color(0.9, 0.5, 0.6, 0.9)
+
+[node name="Coral_21" type="ColorRect" parent="." unique_id=295264574]
+offset_left = 102.94288
+offset_top = -397.35556
+offset_right = 125.24886
+offset_bottom = -388.61896
+color = Color(0.4, 0.8, 0.5, 0.85)
+
+[node name="Coral_22" type="ColorRect" parent="." unique_id=804421257]
+offset_left = -252.41173
+offset_top = 69.760765
+offset_right = -243.39903
+offset_bottom = 96.2238
+color = Color(0.3, 0.6, 0.7, 0.8)
+
+[node name="Coral_23" type="ColorRect" parent="." unique_id=1667563055]
+offset_left = -0.015608401
+offset_top = -62.274094
+offset_right = 20.589634
+offset_bottom = -50.696793
+color = Color(0.7, 0.7, 0.3, 0.85)
+
+[node name="Coral_24" type="ColorRect" parent="." unique_id=827329681]
+offset_left = 191.91568
+offset_top = 288.9785
+offset_right = 213.93036
+offset_bottom = 298.2089
+color = Color(0.9, 0.35, 0.3, 0.9)
+
+[node name="Coral_25" type="ColorRect" parent="." unique_id=986431326]
+offset_left = 112.12138
+offset_top = -458.4433
+offset_right = 125.323
+offset_bottom = -449.70056
+color = Color(1, 0.6, 0.2, 0.85)
+
+[node name="Coral_26" type="ColorRect" parent="." unique_id=1308249531]
+offset_left = -305.79892
+offset_top = -243.49472
+offset_right = -301.06277
+offset_bottom = -230.21428
+color = Color(0.9, 0.5, 0.6, 0.9)
+
+[node name="Coral_27" type="ColorRect" parent="." unique_id=1162125532]
+offset_left = -83.29796
+offset_top = 211.99875
+offset_right = -59.934685
+offset_bottom = 222.22882
+color = Color(0.4, 0.8, 0.5, 0.85)
+
+[node name="Coral_28" type="ColorRect" parent="." unique_id=441768931]
+offset_left = 371.6602
+offset_top = 345.21524
+offset_right = 385.00677
+offset_bottom = 355.1671
+color = Color(0.3, 0.6, 0.7, 0.8)
+
+[node name="Coral_29" type="ColorRect" parent="." unique_id=918865692]
+offset_left = 263.79886
+offset_top = -142.88162
+offset_right = 268.7861
+offset_bottom = -129.01884
+color = Color(0.7, 0.7, 0.3, 0.85)
+
+[node name="Vent_0" type="ColorRect" parent="." unique_id=1774449254]
+offset_left = 157.6049
+offset_top = 222.42702
+offset_right = 165.6049
+offset_bottom = 230.42702
+color = Color(1, 0.5, 0.1, 0.6)
+
+[node name="Vent_1" type="ColorRect" parent="." unique_id=2067669008]
+offset_left = -181.49094
+offset_top = 193.30084
+offset_right = -173.49094
+offset_bottom = 201.30084
+color = Color(1, 0.5, 0.1, 0.6)
+
+[node name="Vent_2" type="ColorRect" parent="." unique_id=1297841804]
+offset_left = -132.08191
+offset_top = 289.52295
+offset_right = -124.08191
+offset_bottom = 297.52295
+color = Color(1, 0.5, 0.1, 0.6)
+
+[node name="Vent_3" type="ColorRect" parent="." unique_id=599870508]
+offset_left = -102.610054
+offset_top = -186.12526
+offset_right = -94.610054
+offset_bottom = -178.12526
+color = Color(1, 0.5, 0.1, 0.6)
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=658373684 instance=ExtResource("3_eb6dy")]
+collision_mask = 10
 motion_mode = 1
 script = ExtResource("4_trceg")
 
-[node name="EnemySpawner" type="Node2D" parent="." unique_id=879108643]
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=974993279]
 script = ExtResource("5_a8y0u")
 
-[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1499737114]
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=956615813]
 stream = ExtResource("6_jkv2x")
 volume_db = -10.0
 autoplay = true
 
-[node name="SFX" type="AudioStreamPlayer" parent="." unique_id=898596946]
+[node name="SFX" type="AudioStreamPlayer" parent="." unique_id=116380560]
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=437593971 instance=ExtResource("7_jbj1t")]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1919583923 instance=ExtResource("7_jbj1t")]
 layer = 10
 script = ExtResource("8_muem4")
 
-[node name="CombatScreen" type="CanvasLayer" parent="." unique_id=395243524 instance=ExtResource("9_dp3eg")]
+[node name="CombatScreen" type="CanvasLayer" parent="." unique_id=1177418965 instance=ExtResource("9_dp3eg")]
 layer = 20
 script = ExtResource("10_0ld40")
