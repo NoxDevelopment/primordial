@@ -308,56 +308,96 @@ func _build_main() -> void:
 		rock_shape.shape = shape
 		rock.add_child(rock_shape)
 
-		# Visual — dark colored rectangle for now
-		var rock_visual := ColorRect.new()
-		var rock_size: float = shape.radius * 2.0
-		rock_visual.size = Vector2(rock_size, rock_size)
-		rock_visual.position = Vector2(-rock_size / 2.0, -rock_size / 2.0)
-		rock_visual.color = Color(
-			randf_range(0.12, 0.2),
-			randf_range(0.12, 0.18),
-			randf_range(0.15, 0.22),
-			0.85
-		)
-		rock.add_child(rock_visual)
+		# Visual — procedural rock texture
+		var rock_sprite := Sprite2D.new()
+		var rock_size: int = int(shape.radius * 2.5)
+		var rock_img := Image.create(rock_size, rock_size, false, Image.FORMAT_RGBA8)
+		# Draw a filled circle for the rock
+		var center: float = float(rock_size) / 2.0
+		var r_sq: float = center * center * 0.85  # slightly smaller than image
+		for px in range(rock_size):
+			for py in range(rock_size):
+				var dx: float = float(px) - center
+				var dy: float = float(py) - center
+				if dx * dx + dy * dy < r_sq:
+					# Dark rock with slight color variation
+					var noise_val: float = sin(float(px) * 0.3) * cos(float(py) * 0.4) * 0.03
+					var base_r: float = 0.15 + noise_val + randf_range(-0.02, 0.02)
+					var base_g: float = 0.13 + noise_val + randf_range(-0.02, 0.02)
+					var base_b: float = 0.18 + noise_val + randf_range(-0.02, 0.02)
+					rock_img.set_pixel(px, py, Color(base_r, base_g, base_b, 1.0))
+				# else: stays transparent (default)
+		rock_sprite.texture = ImageTexture.create_from_image(rock_img)
+		rock_sprite.name = "RockSprite"
+		rock.add_child(rock_sprite)
 		root.add_child(rock)
 
-	# Coral clusters (visual only — no collision, different colors)
+	# Coral clusters — procedural pixel-art style sprites
 	var coral_colors: Array = [
-		Color(0.9, 0.35, 0.3, 0.9),   # Red coral
-		Color(1.0, 0.6, 0.2, 0.85),   # Orange coral
-		Color(0.9, 0.5, 0.6, 0.9),    # Pink coral
-		Color(0.4, 0.8, 0.5, 0.85),   # Green seaweed
-		Color(0.3, 0.6, 0.7, 0.8),    # Blue-green algae
-		Color(0.7, 0.7, 0.3, 0.85),   # Yellow sponge
+		Color(0.9, 0.3, 0.25),    # Red coral
+		Color(1.0, 0.55, 0.15),   # Orange coral
+		Color(0.9, 0.45, 0.55),   # Pink coral
+		Color(0.3, 0.7, 0.4),     # Green seaweed
+		Color(0.25, 0.55, 0.65),  # Blue-green algae
+		Color(0.75, 0.7, 0.25),   # Yellow sponge
 	]
-	for i in range(30):
-		var coral := ColorRect.new()
-		coral.name = "Coral_%d" % i
-		coral.color = coral_colors[i % coral_colors.size()]
-		# Varied sizes — some tall thin, some wide short
+	for i in range(35):
+		var coral_color: Color = coral_colors[i % coral_colors.size()]
+		var coral_sprite := Sprite2D.new()
+		coral_sprite.name = "Coral_%d" % i
+
+		# Generate a small procedural coral shape
+		var cw: int = randi_range(8, 18)
+		var ch: int = randi_range(12, 28)
 		if randf() > 0.5:
-			coral.size = Vector2(randf_range(4, 10), randf_range(12, 32))  # Tall coral
-		else:
-			coral.size = Vector2(randf_range(10, 24), randf_range(6, 12))  # Wide sponge
-		coral.position = Vector2(randf_range(-500, 500), randf_range(-500, 500))
-		# Don't place coral on top of rocks
+			# Swap for wide flat shape
+			var tmp: int = cw
+			cw = ch
+			ch = tmp
+		var coral_img := Image.create(cw, ch, false, Image.FORMAT_RGBA8)
+		# Fill with coral color, slight variation per pixel
+		for px in range(cw):
+			for py in range(ch):
+				# Taper toward top for branch-like shape
+				var width_at_y: float = float(cw) * (0.5 + 0.5 * float(ch - py) / float(ch))
+				var center_x: float = float(cw) / 2.0
+				if abs(float(px) - center_x) < width_at_y / 2.0:
+					var vary: float = randf_range(-0.06, 0.06)
+					coral_img.set_pixel(px, py, Color(
+						clampf(coral_color.r + vary, 0.0, 1.0),
+						clampf(coral_color.g + vary, 0.0, 1.0),
+						clampf(coral_color.b + vary, 0.0, 1.0),
+						1.0
+					))
+
+		coral_sprite.texture = ImageTexture.create_from_image(coral_img)
+		coral_sprite.position = Vector2(randf_range(-500, 500), randf_range(-500, 500))
+
+		# Don't place on rocks
 		var too_close: bool = false
 		for rp in rock_positions:
-			if coral.position.distance_to(rp) < 40.0:
+			if coral_sprite.position.distance_to(rp) < 40.0:
 				too_close = true
 				break
 		if not too_close:
-			root.add_child(coral)
+			root.add_child(coral_sprite)
 
-	# Thermal vents (small glowing spots)
-	for i in range(4):
-		var vent := ColorRect.new()
-		vent.name = "Vent_%d" % i
-		vent.color = Color(1.0, 0.5, 0.1, 0.6)
-		vent.size = Vector2(8, 8)
-		vent.position = Vector2(randf_range(-400, 400), randf_range(-400, 400))
-		root.add_child(vent)
+	# Thermal vents — bright glowing circles
+	for i in range(5):
+		var vent_sprite := Sprite2D.new()
+		vent_sprite.name = "Vent_%d" % i
+		var vent_size: int = randi_range(6, 12)
+		var vent_img := Image.create(vent_size, vent_size, false, Image.FORMAT_RGBA8)
+		var vent_center: float = float(vent_size) / 2.0
+		for px in range(vent_size):
+			for py in range(vent_size):
+				var dist: float = Vector2(float(px), float(py)).distance_to(Vector2(vent_center, vent_center))
+				if dist < vent_center:
+					var glow: float = 1.0 - dist / vent_center
+					vent_img.set_pixel(px, py, Color(1.0, 0.5 * glow + 0.3, 0.1 * glow, glow * 0.9))
+		vent_sprite.texture = ImageTexture.create_from_image(vent_img)
+		vent_sprite.position = Vector2(randf_range(-400, 400), randf_range(-400, 400))
+		root.add_child(vent_sprite)
 
 	# Player instance
 	var player_scene: PackedScene = load("res://scenes/player.tscn")

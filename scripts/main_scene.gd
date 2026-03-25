@@ -197,16 +197,9 @@ func _on_era_changed(era: int) -> void:
 			if child.name.begins_with("OceanTile_") and child is Sprite2D:
 				child.texture = new_tex
 
-	# Swap water overlay color based on era
-	if _water_overlay and _water_overlay.has_method("_ready"):
-		var overlay: ColorRect = _water_overlay.get_node_or_null("WaterTint")
-		if overlay:
-			match era:
-				1, 2, 3: overlay.color = Color(0.05, 0.15, 0.35, 0.18)  # Blue underwater
-				4: overlay.color = Color(0.05, 0.15, 0.05, 0.12)  # Green swamp mist
-				5, 6: overlay.color = Color(0.15, 0.08, 0.02, 0.10)  # Orange desert haze
-				7, 8: overlay.color = Color(0.02, 0.10, 0.02, 0.08)  # Light forest green
-				9, 10: overlay.color = Color(0.10, 0.12, 0.18, 0.12)  # Cold blue-grey
+	# Swap water overlay tint
+	if _water_overlay and _water_overlay.has_method("set_era_tint"):
+		_water_overlay.set_era_tint(era)
 
 func _on_combat_finished(victory: bool) -> void:
 	if victory and _player and _player.has_signal("hp_changed"):

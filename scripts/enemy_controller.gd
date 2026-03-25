@@ -10,12 +10,25 @@ var _swim_time: float = 0.0
 var _sprite: Sprite2D = null
 
 var ENEMY_SPRITES: Dictionary = {
+	"plankton": "res://assets/img/sprite_jellyfish.png",
+	"sea_worm": "res://assets/img/sprite_pikaia.png",
+	"small_sponge": "res://assets/img/sprite_trilobite.png",
+	"small_trilobite": "res://assets/img/sprite_trilobite.png",
 	"trilobite": "res://assets/img/sprite_trilobite.png",
 	"jellyfish": "res://assets/img/sprite_jellyfish.png",
 	"eurypterid": "res://assets/img/sprite_eurypterid.png",
 	"nautiloid": "res://assets/img/sprite_nautiloid.png",
 	"anomalocaris": "res://assets/img/sprite_anomalocaris.png",
 	"cameroceras": "res://assets/img/sprite_nautiloid.png",
+	"hallucigenia": "res://assets/img/sprite_hallucigenia.png",
+	"opabinia": "res://assets/img/sprite_opabinia.png",
+	"wiwaxia": "res://assets/img/sprite_trilobite.png",
+	"orthoceras": "res://assets/img/sprite_nautiloid.png",
+	"arthropleura": "res://assets/img/sprite_arthropleura.png",
+	"meganeura": "res://assets/img/sprite_meganeura.png",
+	"pulmonoscorpius": "res://assets/img/sprite_eurypterid.png",
+	"smilodon": "res://assets/img/sprite_smilodon.png",
+	"mammoth": "res://assets/img/sprite_mammoth.png",
 }
 
 func _ready() -> void:
